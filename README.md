@@ -3,4 +3,4 @@
 # Alex Chen (862086202)
 # Taeho Yoo (862066993)
 
-In this assignment, we will be building our own shell.
+In this assignment, we will build our own shell.
