@@ -53,6 +53,7 @@ Child 2: Deals with executing commands
 Alex dealing with child 1 tokens
 Caleb Dealing with child 2 tokens
 Both planning to Unit Test after each grandchild (Examples of grandchild: Andtoken, Ortoken etc)
+      [Unit test for token class](https://github.com/cs100/assignment-acty/issues/5)
 Help each other when needed
 
 
