@@ -58,6 +58,8 @@ Caleb Dealing with child 2 functions
       [Executioner Class Creation + Executioner/Command functions](https://github.com/cs100/assignment-acty/issues/1)
 Both planning to Unit Test after each grandchild (Examples of grandchild: Andtoken, Ortoken etc)
       [Unit test for token class](https://github.com/cs100/assignment-acty/issues/5)
+      [Unit test for executioner class](https://github.com/cs100/assignment-acty/issues/4)      
+ 
 Help each other when needed
 
 
