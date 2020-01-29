@@ -48,13 +48,13 @@ First: Understanding fork, execvp, and waitpid and how they work together. Try t
 Caleb: work on sys call prototype
 Alex:Working on Parser prototype
 Build Parent Class: Will have basic commands that both children will need
-      [Parent Class Construction](https://github.com/cs100/assignment-acty/issues/2)
 Child 1: Deal with commands and parsing the commands 
 Child 2: Deals with executing commands
 Alex dealing with child 1 tokens
       [Token Class Creation + Grandchildren tokens](https://github.com/cs100/assignment-acty/issues/3)
 
-Caleb Dealing with child 2 tokens
+Caleb Dealing with child 2 functions 
+      [Executioner Class Creation + Executioner/Command functions](https://github.com/cs100/assignment-acty/issues/1)
 Both planning to Unit Test after each grandchild (Examples of grandchild: Andtoken, Ortoken etc)
       [Unit test for token class](https://github.com/cs100/assignment-acty/issues/5)
 Help each other when needed
