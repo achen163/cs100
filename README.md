@@ -9,6 +9,8 @@ In this assignment, we will be creating our own CLI shell called rshell using C+
 OMT DIAGRAM:
 
 
+![](images/omtdiagrampic.PNG) 
+
 CLASSES:
 Parent: basic things that all the children class will have like if command is run, if exit has been called. The input will go through this class first and be transformed based on the parsing. 
 
