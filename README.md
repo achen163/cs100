@@ -45,6 +45,16 @@ WEXITSTATUS():
 
 DEVELOPMENT AND TESTING ROADMAP:
 First: Understanding fork, execvp, and waitpid and how they work together. Try to understand the optional but helpful system calls wifexited and wexitstatus as well.
+Caleb: work on sys call prototype
+Alex:Working on Parser prototype
+Build Parent Class: Will have basic commands that both children will need
+Child 1: Deal with commands and parsing the commands 
+Child 2: Deals with executing commands
+Alex dealing with child 1 tokens
+Caleb Dealing with child 2 tokens
+Both planning to Unit Test after each grandchild (Examples of grandchild: Andtoken, Ortoken etc)
+Help each other when needed
+
 
 
 
