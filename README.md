@@ -48,6 +48,7 @@ First: Understanding fork, execvp, and waitpid and how they work together. Try t
 Caleb: work on sys call prototype
 Alex:Working on Parser prototype
 Build Parent Class: Will have basic commands that both children will need
+      [Parent Class Construction](https://github.com/cs100/assignment-acty/issues/2)
 Child 1: Deal with commands and parsing the commands 
 Child 2: Deals with executing commands
 Alex dealing with child 1 tokens
