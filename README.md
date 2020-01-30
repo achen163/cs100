@@ -3,15 +3,15 @@
 # Alex Chen (862086202)
 # Taeho Yoo (862066993)
 
-INTRODUCTION:
+##INTRODUCTION:
 In this assignment, we will be creating our own CLI shell called rshell using C++. It will be able to print a command prompt, read in a line of commands and connectors from standard input, execute the appropriate commands using fork, execvp, and waitpid, and it will repeat these until an exit command is executed. Our design pattern will mostly likely be consisted of subclasses, inheritance, and polymorphism with one parent class composing of different token classes as its children. The inputs will be ingested by the base class and sent to one of its subclasses to be taken care of.  
 
-OMT DIAGRAM:
+##OMT DIAGRAM:
 
 
 ![](images/omtdiagrampic.PNG) 
 
-CLASSES:
+##CLASSES:
 Parent: basic things that all the children class will have like if command is run, if exit has been called. The input will go through this class first and be transformed based on the parsing. 
 
 Child 1: Token Class
@@ -24,7 +24,7 @@ CommentToken(#): This class will make us skip anything after a # unless it needs
 
 Child 2: Executor Class (Recommended in the Slides): Executable commands such as exit, echo, ls etc. Each command will represent a function that will be called based on the input. 
 
-PROTOTYPES/RESEARCH:
+##PROTOTYPES/RESEARCH:
 Commands:
 fork():
 In order to use the fork command, need #include <unistd.h> library. Fork makes clone of process currently in, allowing 2 of same processes to run at the same time. Good for when having two things running at the same time. Changing something in one process won’t affect the other one. Fork returns a pid_t, if 0, we are in child process, if positive # greater than 0, we are in the parent process. If PID is -1, it has failed, and make sure to error check. Most of the time use wait() system call on the parent process until the child process ends. 
@@ -43,7 +43,7 @@ WIFEXITED():
 WEXITSTATUS(): 
 -When WIFEXITED() is nonzero, WEXITSTATUS() evaluates to the low-order 8 bits of the status argument that the child passed to the exit() or _exit() function, or the value the child process returned from main().
 
-DEVELOPMENT AND TESTING ROADMAP:
+##DEVELOPMENT AND TESTING ROADMAP:
 First: Understanding fork, execvp, and waitpid and how they work together. Try to understand the optional but helpful system calls wifexited and wexitstatus as well.
 Caleb: work on sys call prototype
 Alex:Working on Parser prototype
