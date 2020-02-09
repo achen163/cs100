@@ -5,11 +5,13 @@ ADD_SUBDIRECTORY(googletest)
 SET(CMAKE_CXX_STANDARD 11)
 
 ADD_EXECUTABLE(rshell
-   main.cpp
+   src/main.cpp
+   src/executioner.cpp
 )
 
 ADD_EXECUTABLE(test
-   unit_test.cpp
+   unit_tests/test_file_1.cpp
+   unit_tests/test_file_2.cpp
 )
 
 TARGET_LINK_LIBRARIES(test gtest)
