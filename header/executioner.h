@@ -3,12 +3,14 @@
 
 #include <stdio.h>
 #include <unistd.h>
+#include <string>
+#include <wait.h>
 
 using namespace std;
 
 class Executioner {
 	public:
-		int execute(const char*);
+		int execute(char*);
 		
 };
 

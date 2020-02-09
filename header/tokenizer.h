@@ -7,10 +7,10 @@ class Tokenizer : public Executioner {
 	public:
 		Tokenizer() {}
 
-		virtual const char* stringify() = 0; //return const char* after c_string 
+		virtual char* stringify() = 0; //convert to char*
 		virtual int evaluate() = 0; //return execute value
 	private:
-		const char* arg; //initialize this in constructor
+		char* arg; //initialize this in the constructor as an array 
 };
 
 #endif
