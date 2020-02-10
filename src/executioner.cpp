@@ -8,8 +8,10 @@ int Executioner::execute(const char* cmd, char* const* args) {
 	}
 	if(pid == 0) {
 		cout << "running child process" << pid << endl;
-		if(execvp(cmd, args) == -1) 
+		if(execvp(cmd, args) == -1) {
+			perror("execution error");
 			return 1;  // invalid command
+		}
 	} 
 	if(pid > 0) {
 		if(waitpid(-1, NULL, 0) == -1) 
