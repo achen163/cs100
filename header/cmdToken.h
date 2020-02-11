@@ -6,8 +6,8 @@
 class CmdToken : public Tokenizer {
 	public:
 		CmdToken() : Tokenizer() {} //parameters?
-		virtual const char* stringify(string);
-		virtual void evalute();
+		virtual char* const* stringify(const char*);
+		virtual bool evalute();
 		//maybe more functions 
 };
 #endif

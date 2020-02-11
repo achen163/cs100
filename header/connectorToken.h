@@ -7,8 +7,8 @@
 class Connector: public Tokenizer{
 	public:
 		Connector() : Tokenizer() { }
-		virtual const char* stringify(string);
-		virtual void evaluate();
+		virtual char* const* stringify(const char*);
+		virtual bool evaluate();
 		 			
 };
 
