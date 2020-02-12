@@ -1,9 +1,7 @@
-#ifndef __ARGTOKEN_H__
-#define __ARGTOKEN_H__
 
 #include "../header/tokenizer.h"
 
-string  ArgToken::stringify(Tokenizer* token) {	
+string CmdArgToken::stringify(Tokenizer* token) {	
 	for (unsigned i =0; i < token->tokens.size();i++ ) {
 	int numArgs = 0;
 	string connector = " ";	
@@ -18,19 +16,19 @@ string  ArgToken::stringify(Tokenizer* token) {
 		
 		connector = token->tokens.at(i);
 
-	char* array[numArgs+1] ;
+	char* array[numArgs+1];
 		int j = 0;
 		int index = numArgs+1;
 		while(numArgs > 1) {
-			token->element = tokens.at(j);
-			array[j] == tokens.at(j)->stringify(token);
+			token->element = token->tokens.at(j);
+			array[j] == token->stringify(token);
 			j++;
 			numArgs--;
 		}
 		array[index] = NULL;
 		
-	if (connector == "&&" }{
-		if (!token->evalate(array)){	
+	if (connector == "&&" ){
+		if (!(token->evalate(array))){	
 		break;	
 		}
 
@@ -46,8 +44,7 @@ string  ArgToken::stringify(Tokenizer* token) {
 	else {
 		token->evaluate(array);
 	}
-	
+	return "$ ";	
 }
 	
 
-#endif
