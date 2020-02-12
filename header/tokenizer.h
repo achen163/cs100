@@ -11,8 +11,7 @@ class Tokenizer : public Executioner {
 
 		virtual const char* stringify(string) = 0; //convert to const char* (this is for the first parameter in the execute function)
 		virtual bool evaluate() = 0; //not sure about the return type 
-	protected:
-		const char* command;		  
+	protected:		  
 		vector<const char*> tokens;
 		int tokencounter = 0; 
 //initialize this in the constructor as an array (this array holds arguments)
