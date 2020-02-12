@@ -7,7 +7,6 @@ class CmdArgToken : public Tokenizer {
 	public:
 		CmdArgToken() : Tokenizer() {} //parameters?	
 		virtual string stringify(Tokenizer*);
-		virtual bool evaluate();
 		//maybe more functions?
 };
 #endif
