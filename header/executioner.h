@@ -10,7 +10,7 @@ using namespace std;
 
 class Executioner {
 	public:
-		int execute(const char* cmd, char* const* args);
+		int execute(char* args[]);
 		
 };
 
