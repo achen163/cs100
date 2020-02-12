@@ -10,6 +10,7 @@ using namespace std;
 
 class Tokenizer : public Executioner {
 	public:
+		Tokenizer() {} 
 		Tokenizer(string input) { userInput = input; }
 		
 		virtual string stringify(Tokenizer*) = 0; 
