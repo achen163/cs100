@@ -6,7 +6,7 @@
 class ArgToken : public Tokenizer {
 	public:
 		ArgToken() : Tokenizer() {} //parameters?	
-		virtual char* const* stringify(const char*);
+		virtual string stringify(Tokenizer*);
 		virtual bool evaluate();
 		//maybe more functions?
 };
