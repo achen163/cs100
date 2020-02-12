@@ -3,28 +3,50 @@
 
 #include "../header/tokenizer.h"
 
-char* const* ArgToken::stringify(Tokenizer* token) {	
-	int numArgs = 0;	
-	if(token->tokencouner == 2) {
-		int i = 1;
+string  ArgToken::stringify(Tokenizer* token) {	
+	for (unsigned i =0; i < token->tokens.size();i++ ) {
+	int numArgs = 0;
+	string connector = " ";	
+
 		while(token->tokens.at(i) != ";" && 
 		      token->tokens.at(i) != "||" &&
 		      token->tokens.at(i) != "&&") {
-			if(i != tokens.size()-1) 
+			if(i != token->tokens.size()-1) 
 				numArgs++;
 		i++;
 		}
-	}
-	char* const* args[numArgs];
-	int argIndex = 0;
-	int argBegin = 1; //needs to update after each connector somehow
-	for(unsigned i = argBegin; i < numArgs + argBegin; i++) {
-		args[argIndex] = token->stringify(token->tokens.at(i)); //fill the array
-	}
-	token->evaluate(args);
-	return args; //don't  know what to do with this really..
-}		
 		
+		connector = token->tokens.at(i);
+
+	char* array[numArgs+1] ;
+		int j = 0;
+		int index = numArgs+1;
+		while(numArgs > 1) {
+			array[j] == tokens.at(j)->stringify();
+			j++;
+			numArgs--;
+		}
+		array[index] = NULL;
+		
+	if (connector == "&&" }{
+		if (!token->evalate(array)){	
+		break;	
+		}
+
+	}
+	else if (connector == "||") {
+		if (token->evaluate(array)){
+			break;
+		}	
+	}
+	else if(connector == ";"){
+		token->evaluate(array);	
+	}
+	else {
+		token->evaluate(array);
+	}
+	
+}
 	
 
 #endif
