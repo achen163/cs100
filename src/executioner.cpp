@@ -1,14 +1,14 @@
 #include <iostream>
 #include "../header/executioner.h"
 
-int Executioner::execute(const char* cmd, char* const* args) {
+int Executioner::execute(char* args[]) {
 	pid_t pid = fork();
 	if(pid < 0) {
 		perror("forking failed");
 	}
 	if(pid == 0) {
 		cout << "running child process" << pid << endl;
-		if(execvp(cmd, args) == -1) {
+		if(execvp(args[0], args) == -1) {
 			perror("execution error");
 			return 1;  // invalid command
 		}

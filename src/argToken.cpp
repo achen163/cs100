@@ -22,7 +22,8 @@ string  ArgToken::stringify(Tokenizer* token) {
 		int j = 0;
 		int index = numArgs+1;
 		while(numArgs > 1) {
-			array[j] == tokens.at(j)->stringify();
+			token->element = tokens.at(j);
+			array[j] == tokens.at(j)->stringify(token);
 			j++;
 			numArgs--;
 		}

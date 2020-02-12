@@ -17,7 +17,7 @@ class Tokenizer : public Executioner {
 		void tokenizer(Tokenizer*);
 		string getStr() { return userInput; } 
 	protected:		  
-		vector<Tokenizer* > tokens;
+		vector<string> tokens;
 		string userInput;
 		string element;
 //initialize this in the constructor as an array (this array holds arguments)
