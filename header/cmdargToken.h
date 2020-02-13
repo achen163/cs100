@@ -8,7 +8,7 @@ class CmdArgToken : public Tokenizer {
 		
 		CmdArgToken(string line, Tokenizer* t) : Tokenizer() { this->userInput = line; tokenPtr = t; }
 		
-		virtual char* stringify();
+		virtual char* stringify(string, Tokenizer*);
 		void tokenizer(CmdArgToken*);
 		string getStr() { return userInput; }
                 vector<string> getTokens() { return tokens; }

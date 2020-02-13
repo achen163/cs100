@@ -49,7 +49,7 @@ void CmdArgToken::tokenizer(CmdArgToken* token){
         char* array[numCmdArgs+1];
                 int j = 0;
                 while(numCmdArgs > 0){
-			array[j] = stringify(unconverted.at(j), ptr);
+			array[j] = stringify(unconverted.at(j), tokenPtr);
 			j++;
 			numCmdArgs--;
 		}
@@ -69,11 +69,8 @@ void CmdArgToken::tokenizer(CmdArgToken* token){
         }
         else {
                 evaluate(array);
-        }
-        return (char*)"$ ";
-
-	
-}
+        }	
+	}
 
 }
 char* CmdArgToken::stringify(string line, Tokenizer* ptr) {	

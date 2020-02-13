@@ -7,7 +7,7 @@
 class ConnectorToken: public Tokenizer {
 	public:
 		virtual char* stringify(string token) { return (char*)token.c_str(); }
-		virtual bool evaluate(char* arr[]) {}; 
+		virtual bool evaluate(char* arr[]); 
                
 };
 #endif
