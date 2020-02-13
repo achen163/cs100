@@ -29,7 +29,7 @@ void ConnectorToken::parser() {
 	int qIndex = 0;
 	int pIndex = 0;
 	for(unsigned i = 0; i < userinput.size(); i++) {
-		if(this->userinput.at(i) == '\"') {
+		if(userinput.at(i) == '\"') {
 			qIndex = i;
 			break;
 		}
@@ -54,7 +54,7 @@ void ConnectorToken::parser() {
 		int numCmdArgs = 0;
 		string connector = "";
 		while(v1.at(i) != ";" || v1.at(i) != "||" || v1.at(i) != "&&") {
-			if(i != v1.size() - 1) {
+			if(i == v1.size() - 1) { //if last element of the string.
 				numCmdArgs++;
 				v2.push_back(v1.at(i));
 			}

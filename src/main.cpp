@@ -8,10 +8,12 @@ int main() {
 	cout << "$ ";
 	string input;
 	getline(cin, input);
+
 	while(input != "exit") {
-		cout << "$ "; 
 		Tokenizer* t1 = new ConnectorToken(input);
-		t1->parser();
+                t1->parser();
+		cout << "$ ";
+		getline(cin, input);
 	}
 
 return 0;
