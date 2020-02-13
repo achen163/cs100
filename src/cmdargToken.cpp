@@ -55,20 +55,20 @@ void CmdArgToken::tokenizer(CmdArgToken* token){
 		}
 		array[numCmdArgs] = NULL;
 	if(connector == "&&") {
-		if(!(evaluate(array))) {
+		if(!(token->evaluate(array, tokenPtr))) {
 			break;
 		}
 	}
 	 else if (connector == "||") {
-                if (evaluate(array)){
+                if (token->evaluate(array, tokenPtr)){
                         break;
                 }
         }
         else if(connector == ";"){
-                evaluate(array);
+                token->evaluate(array, tokenPtr);
         }
         else {
-                evaluate(array);
+                token->evaluate(array, tokenPtr);
         }	
 	}
 

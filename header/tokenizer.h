@@ -7,7 +7,7 @@
 
 using namespace std; 
 
-class Tokenizer : Executioner {
+class Tokenizer {
 	public:
 		Tokenizer() {} 
 		
