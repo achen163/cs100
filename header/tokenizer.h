@@ -2,10 +2,8 @@
 #define __TOKENIZER_H__
 
 #include <vector>
-#include "executioner.h"
-#include "cmdargToken.h"
-#include "connectorToken.h"
 #include <string>
+#include "executioner.h"
 
 using namespace std; 
 
