@@ -8,7 +8,7 @@ int main() {
 	cout << "$ ";
 	string input;
 	getline(cin, input);
-	whlie(input != "exit") {
+	while(input != "exit") {
 		cout << "$ "; 
 		Tokenizer* t1 = new ConnectorToken(input);
 		t1->parser();
