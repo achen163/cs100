@@ -2,14 +2,22 @@
 #define __CMDARGTOKEN_H__
 
 #include "tokenizer.h"
-#include "connectorToken.h"
 
 class CmdArgToken : public Tokenizer {
 	public:
-		CmdArgToken() : Tokenizer() {} //parameters?	
-		virtual char* stringify(string token);
-		//maybe more functions?
-	private:
+		
+		CmdArgToken(string line, Tokenizer* t) : Tokenizer() { this->userInput = line; tokenPtr = t; }
+		
+		virtual char* stringify();
+		void tokenizer(CmdArgToken*);
+		string getStr() { return userInput; }
+                vector<string> getTokens() { return tokens; }
+                string setElement(string element) { this->element = element; }
+
+        private:
+                vector<string> tokens;
+                string userInput;   
+                string element;
 		Tokenizer* tokenPtr;
 };
 #endif
