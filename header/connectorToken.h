@@ -10,7 +10,7 @@ class ConnectorToken: public Tokenizer {
 		ConnectorToken(string userinput) : Tokenizer(){this->userinput = userinput};  
 		virtual char* stringify();
 		virtual bool evaluate();
-		char* parser(string userinput);
+		void parser(string userinput);
 		 
 
 
