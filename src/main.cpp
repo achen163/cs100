@@ -8,8 +8,7 @@ int main() {
 	cout << "$ ";
 	string input;
 	getline(cin, input);
-	Tokenizer* t1 = new CmdArgToken();
-	Tokenizer* t2 = new CmdArgToken(input, t1);
+	Tokenizer* t1 = new ConnectorToken(input);
 
 return 0;
 }

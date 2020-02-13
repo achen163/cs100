@@ -7,7 +7,7 @@ SET(CMAKE_CXX_STANDARD 11)
 ADD_EXECUTABLE(rshell
    src/main.cpp
    src/executioner.cpp
-   src/cmdargToken.cpp
+   
    src/connectorToken.cpp
 )
 
