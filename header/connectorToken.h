@@ -7,7 +7,7 @@
 class ConnectorToken: public Tokenizer {
 	public:
 
-		ConnectorToken(string userinput) : Tokenizer(){this->userinput = userinput};  
+		ConnectorToken(string userinput) : Tokenizer(){ this->userinput = userinput; } 
 		virtual void stringify();
 		virtual bool evaluate();
 		void parser(string userinput);
