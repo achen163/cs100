@@ -2,13 +2,14 @@
 #define __CMDARGTOKEN_H__
 
 #include "tokenizer.h"
+#include "connectorToken.h"
 
 class CmdArgToken : public Tokenizer {
 	public:
 		CmdArgToken() : Tokenizer() {} //parameters?	
-		virtual string stringify(string token) {}
+		virtual char* stringify(string token);
 		//maybe more functions?
 	private:
-		Token* tokenPter;
+		Tokenizer* tokenPtr;
 };
 #endif

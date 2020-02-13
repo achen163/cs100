@@ -1,35 +1,31 @@
-
-#include "../header/connectorToken.h"
 #include "../header/cmdargToken.h"
-
-string CmdArgToken::stringify(string token) {	
-	for (unsigned i =0; i < token->tokens.size();i++ ) {
-	int numArgs = 0;
+#include "../header/connectorToken.h"
+char* CmdArgToken::stringify(string token) {	
+	for (unsigned i =0; i < tokens.size();i++ ) {
+	int numCmdArgs = 0;
 	string connector = " ";	
 
 		while(tokens.at(i) != ";" && 
 		      tokens.at(i) != "||" &&
 		      tokens.at(i) != "&&") {
-			if(i != token->tokens.size()-1) 
-				numArgs++;
+			if(i != tokens.size()-1) 
+				numCmdArgs++;
 		i++;
 		}
 		
 		connector = tokens.at(i);
 
-	char* array[numArgs+1];
+	char* array[numCmdArgs+1];
 		int j = 0;
-		int index = numArgs+1;
-		while(numArgs > 1) {
-			element = tokens.at(j);
-			array[j] == tokenPtr->stringify(token);
+		while(numCmdArgs > 0){
+			array[j] = tokenPtr->stringify(token);
 			j++;
-			numArgs--;
+			numCmdArgs--;
 		}
-		array[index] = NULL;
+		array[numCmdArgs] = NULL;
 		
 	if (connector == "&&" ){
-		if (!(evalate(array))){	
+		if (!(evaluate(array))){	
 		break;	
 		}
 
@@ -45,7 +41,8 @@ string CmdArgToken::stringify(string token) {
 	else {
 		evaluate(array);
 	}
-	return "$ ";	
+	return (char*)"$ ";	
+}	
 }
 	
 

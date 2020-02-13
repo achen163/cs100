@@ -7,11 +7,11 @@
 
 using namespace std; 
 
-class Tokenizer {
+class Tokenizer : public Executioner {
 	public:
 		Tokenizer() {} 
 		
-		virtual string stringify(string token) = 0; 
+		virtual char* stringify(string token) = 0; 
 		virtual bool evaluate(char* arr[]) = 0; 
 
 //initialize this in the constructor as an array (this array holds arguments)
