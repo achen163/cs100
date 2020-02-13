@@ -6,7 +6,9 @@
 class CmdArgToken : public Tokenizer {
 	public:
 		CmdArgToken() : Tokenizer() {} //parameters?	
-		virtual string stringify(Tokenizer*);
+		virtual string stringify(string token) {}
 		//maybe more functions?
+	private:
+		Token* tokenPter;
 };
 #endif

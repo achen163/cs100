@@ -1,14 +1,21 @@
-#ifndef __connectorToken_h__
-#define __connectorToken_h__
+#ifndef __CONNECTORTOKEN_H__
+#define __CONNECTORTOKEN_H__
 
 #include <iostream>
 #include "tokenizer.h"
 
-class Connector: public Tokenizer{
+class ConnectorToken: public Tokenizer {
 	public:
-		Connector() : Tokenizer() { }
-		virtual string stringify(Tokenizer*);
-		virtual bool evaluate(Tokenizer*, char* arr[]);
+		ConnectorToken(string line) : Tokenizer() { this->userInput = line; }
+		virtual char* stringify(sting token) { return (char*)token.c_str(); }
+		virtual bool evaluate(char* arr[]) {}; 
+		void tokenizer(ConnectorToken*);
+                string getStr() { return userInput; }
+        protected:
+                vector<string> tokens;
+                string userInput;
+                string element;
+	
 		 			
 };
 
