@@ -1,6 +1,6 @@
 #include "../header/cmdargToken.h"
 #include "../header/connectorToken.h"
-
+#include <boost/tokenizer.hpp>
 
 void CmdArgToken::tokenizer(CmdArgToken* token){
         string userString = token->getStr();
@@ -75,7 +75,8 @@ void CmdArgToken::tokenizer(CmdArgToken* token){
 	
 }
 
-char* CmdArgToken::stringify(sting line, Tokenizer* ptr) {	
+}
+char* CmdArgToken::stringify(string line, Tokenizer* ptr) {	
 	return ptr->stringify(line);
 }
 
