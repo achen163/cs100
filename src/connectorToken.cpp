@@ -1,4 +1,7 @@
 #include "../header/connectorToken.h"
+#include <boost/tokenizer.hpp>
+#include <vector>
+#include <string>
 #include <iostream>
 
 bool ConnectorToken::evaluate() {
@@ -15,35 +18,35 @@ bool ConnectorToken::evaluate() {
 	return true;
 }
 
-char* ConnectorToken::stringify() {
-	for(unsigned i = 0; i < v2.size(); i++) {
+void ConnectorToken::stringify() {
+	for(unsigned i = 0; i < v2.size(); i++) 
 		v3.at(i) = (char*)v2.at(i).c_str();
 }
 
 
-void ConnectorToken::parser(string userinput) {
-	this->userinput = userinput;
+void ConnectorToken::parser(string input) {
+	this->userinput = input;
 	int qIndex = 0;
 	int pIndex = 0;
-	for(unsigned i = 0; i < userinput.size(); i++) {
-		if(userinput.at(i) == '\"') {
+	for(unsigned i = 0; i < this->userinput.size(); i++) {
+		if(this->userinput.at(i) == '\"') {
 			qIndex = i;
 			break;
 		}
 	}
-	for(unsigned j = 0; j < userinput.size(); j++) {
-		if(userinput.at(j) == '#') 
+	for(unsigned j = 0; j < this->userinput.size(); j++) {
+		if(this->userinput.at(j) == '#') 
 			pIndex = j;
 	}
 	if(pIndex < qIndex) 
-		userinput.resize(pIndex); 	
+		this->userinput.resize(pIndex); 	
 	
 	//boost
 	typedef boost::tokenizer<boost::char_separator<char>> tokenizer;
 	boost::char_separator<char> sep(" ");
-	tokenizer tok(userString, sep);
-	for(const auto& tk : tokens) 
-		v1.push_back(tk);
+	tokenizer tok(this->userinput, sep);
+	for(const auto& tk : this->userinput) 
+		v1.push_back((char*)tk);
 	
 	//parsing
 	for(unsigned i = 0; i < v1.size(); i++) {
@@ -62,7 +65,7 @@ void ConnectorToken::parser(string userinput) {
 		stringify();
 		
 		if(connector == "&&") {
-			if(!(evaluate()) 
+			if(!(evaluate())) 
 				break;
 		}
 		else if(connector == "||") {
@@ -78,5 +81,4 @@ void ConnectorToken::parser(string userinput) {
 	v2.clear();
 	v3.clear();				
 	}
-	
 }

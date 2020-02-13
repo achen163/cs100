@@ -11,8 +11,8 @@ class Tokenizer {
 	public:
 		Tokenizer() {} 
 		
-		virtual char* stringify(string token) = 0; 
-		virtual bool evaluate(char* arr[]) = 0; 
+		virtual void stringify() = 0; 
+		virtual bool evaluate() = 0; 
 
 };
 

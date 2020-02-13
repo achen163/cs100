@@ -6,16 +6,15 @@
 
 class ConnectorToken: public Tokenizer {
 	public:
-
 		ConnectorToken(string userinput) : Tokenizer(){ this->userinput = userinput; } 
 		virtual void stringify();
 		virtual bool evaluate();
-		void parser(string userinput);
+		void parser(string);
 		 
 	private:
-	vector<string> v1;
+	vector<char*> v1;
 	vector<string>v2;
-	vector<char*const*>v3;
+	vector<char*>v3;
 	string userinput;               
 };
 #endif
