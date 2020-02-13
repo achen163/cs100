@@ -8,12 +8,10 @@ class ConnectorToken: public Tokenizer {
 	public:
 
 		ConnectorToken(string userinput) : Tokenizer(){this->userinput = userinput};  
-		virtual char* stringify();
+		virtual void stringify();
 		virtual bool evaluate();
 		void parser(string userinput);
 		 
-
-
 	private:
 	vector<string> v1;
 	vector<string>v2;

@@ -5,19 +5,11 @@
 
 class CmdArgToken : public Tokenizer {
 	public:
-		
-		CmdArgToken(string line, Tokenizer* t) : Tokenizer() { this->userInput = line; tokenPtr = t; }
-		virtual bool evaluate(char* array[], Tokenizer*);
-		virtual char* stringify(string, Tokenizer*);
-		void tokenizer(CmdArgToken*);
-		string getStr() { return userInput; }
-                vector<string> getTokens() { return tokens; }
-                string setElement(string element) { this->element = element; }
+		CmdArgToken(Tokenizer* tokenPtr) : Tokenizer() { this->tokenPtr = tokenPtr; }
+		virtual bool evaluate() { return tokenPtr->evaluate(); }
+		virtual char* stringify() { return 
 
         private:
-                vector<string> tokens;
-                string userInput;   
-                string element;
 		Tokenizer* tokenPtr;
 };
 #endif
