@@ -24,28 +24,27 @@ void ConnectorToken::stringify() {
 }
 
 
-void ConnectorToken::parser(string input) {
-	this->userinput = input;
+void ConnectorToken::parser() {
 	int qIndex = 0;
 	int pIndex = 0;
-	for(unsigned i = 0; i < this->userinput.size(); i++) {
+	for(unsigned i = 0; i < userinput.size(); i++) {
 		if(this->userinput.at(i) == '\"') {
 			qIndex = i;
 			break;
 		}
 	}
-	for(unsigned j = 0; j < this->userinput.size(); j++) {
-		if(this->userinput.at(j) == '#') 
+	for(unsigned j = 0; j < userinput.size(); j++) {
+		if(userinput.at(j) == '#') 
 			pIndex = j;
 	}
 	if(pIndex < qIndex) 
-		this->userinput.resize(pIndex); 	
+		userinput.resize(pIndex); 	
 	
 	//boost
 	typedef boost::tokenizer<boost::char_separator<char>> tokenizer;
 	boost::char_separator<char> sep(" ");
-	tokenizer tok(this->userinput, sep);
-	for(const auto& tk : this->userinput) 
+	tokenizer tok(userinput, sep);
+	for(const auto& tk : userinput) 
 		v1.push_back((char*)tk);
 	
 	//parsing
