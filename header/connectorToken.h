@@ -6,8 +6,17 @@
 
 class ConnectorToken: public Tokenizer {
 	public:
-		virtual char* stringify(string token) { return (char*)token.c_str(); }
-		virtual bool evaluate(char* arr[]); 
-               
+
+		ConnectorToken(string userinput) : Tokenizer(){this->userinput = userinput};  
+		virtual char* stringify();
+		virtual bool evaluate();
+		char* parser(string userinput);
+		 
+
+
+	private:
+	vector<string> v;
+	vector<char*const*>v2;
+	string userinput;               
 };
 #endif
