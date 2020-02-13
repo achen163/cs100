@@ -13,8 +13,6 @@ ADD_EXECUTABLE(rshell
 )
 
 ADD_EXECUTABLE(test
-   unit_tests/test_file_1.cpp
-   unit_tests/test_file_2.cpp
    unit_tests/unit_test.cpp
 )
 
