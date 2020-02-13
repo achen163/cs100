@@ -4,6 +4,7 @@
 #include <vector>
 #include "executioner.h"
 #include "cmdargToken.h"
+#include "connectorToken.h"
 #include <string>
 
 using namespace std; 
