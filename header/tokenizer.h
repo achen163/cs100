@@ -13,7 +13,7 @@ class Tokenizer {
 		
 		virtual void stringify() = 0; 
 		virtual bool evaluate() = 0; 
-
+		virtual void parser() = 0;
 };
 
 #endif
