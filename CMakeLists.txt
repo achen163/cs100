@@ -8,7 +8,6 @@ ADD_EXECUTABLE(rshell
    src/main.cpp
    src/executioner.cpp
    src/cmdargToken.cpp
-   src/tokenizer.cpp
    src/connectorToken.cpp
 )
 
