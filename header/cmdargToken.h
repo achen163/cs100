@@ -1,5 +1,5 @@
-#ifndef __ARGTOKEN_H__
-#define __ARGTOKEN_H__
+#ifndef __CMDARGTOKEN_H__
+#define __CMDARGTOKEN_H__
 
 #include "tokenizer.h"
 
