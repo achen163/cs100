@@ -15,7 +15,7 @@ class ConnectorToken: public Tokenizer {
 
 
 	private:
-	vector<string> v;
+	vector<string> v1;
 	vector<char*const*>v2;
 	string userinput;               
 };
