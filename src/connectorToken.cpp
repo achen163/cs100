@@ -45,9 +45,11 @@ void ConnectorToken::parser() {
 	typedef boost::tokenizer<boost::char_separator<char>> tokenizer;
 	boost::char_separator<char> sep(" ");
 	tokenizer tok(userinput, sep);
+/*
 	for(const auto& tk : userinput){
 		v1.push_back((char*)tk);
 	}
+*/
 	
 	//parsing
 	for(unsigned i = 0; i < v1.size(); i++) {
