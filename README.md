@@ -62,6 +62,13 @@ Both planning to Unit Test after each grandchild (Examples of grandchild: Andtok
  
 Help each other when needed
 
+#Assignment 2
+
+Using composite patterns to build the basic layout of rshell, we have created 3 classes for use (tokenizer, connectorToken, and executioner). By taking the userinput as a string, our tokenizer becomes a main pointer object as a pure virtual abstract class. Our connectorToken implements the stringify, evaluate, and parser pure virtuals in tokenizer. It utilizes the parser to tokenize and parse the user input into a vector of tokens. We then convert this vector into an array of char* and use the executioner class to execute the commands and arguments. If commands are invalid, we throw an error message and exit. 
+
+The base class is Tokenizer. ConnectorToken class inherits from Tokenizer. Executioner is its own class. 
+
+The boost library was used during the tokenizing process. 
 
 
 
