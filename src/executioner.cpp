@@ -2,7 +2,7 @@
 #include "../header/executioner.h"
 
 int Executioner::execute(char* args[]) {
-	//if (*args == "exit"){ exit(1);}
+	//if (args[0] == "exit"){ exit(1);}
 	cout << "TEST: " << *args << endl;
 	pid_t pid = fork();
 	if(pid < 0) {
@@ -10,6 +10,8 @@ int Executioner::execute(char* args[]) {
 	}
 	if(pid == 0) {
 		cout << "running child process" << pid << endl;
+		if (args[0] == "exit"){ exit(1);}
+
 		if(execvp(args[0], args) == -1) {
 			const char* temp = "";
 			const char* var = args[0];
