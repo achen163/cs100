@@ -3,13 +3,12 @@
 
 int Executioner::execute(char* args[]) {
 	//if (args[0] == "exit"){ exit(1);}
-	cout << "TEST: " << *args << endl;
 	pid_t pid = fork();
 	if(pid < 0) {
 		perror("forking failed");
 	}
 	if(pid == 0) {
-		cout << "running child process" << pid << endl;
+		//cout << "running child process" << pid << endl;
 		if (args[0] == "exit"){ exit(1);}
 
 		if(execvp(args[0], args) == -1) {

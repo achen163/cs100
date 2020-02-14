@@ -33,7 +33,7 @@ void ConnectorToken::parser() {
 		if(userinput.at(i) != '\"') 
 			unquoted += userinput.at(i);
 	}
-	cout << unquoted << endl;	
+		
 	for(unsigned i = 0; i < userinput.size(); i++) {
 		if(userinput.at(i) == '\"') {
 			qIndex = i;
@@ -42,13 +42,13 @@ void ConnectorToken::parser() {
 	}
 		
 	}
-	cout << "This is my qIndex: " << qIndex << endl;
+	//cout << "This is my qIndex: " << qIndex << endl;
 	
 	for(unsigned j = 0; j < userinput.size(); j++) {
 		if(userinput.at(j) == '#') 
 			pIndex = j;
 	}
-	cout << "This is my pIndex: " << pIndex << endl;
+	//cout << "This is my pIndex: " << pIndex << endl;
 	//if (pIndex > 0
 	if(pIndex > 0 && qIndex > 0  ) { 
 		if (pIndex < qIndex) 
@@ -75,9 +75,9 @@ void ConnectorToken::parser() {
 	v1.push_back(static_cast<std::string>(*tok_iter));
 	}
 
-	for(int j = 0; j < v1.size(); j++){
-		std::cout << j << ". " << v1.at(j) << std::endl;
-	}
+	//for(int j = 0; j < v1.size(); j++){
+	//	std::cout << j << ". " << v1.at(j) << std::endl;
+	//}
 	//std::cout << "test done" << std::endl;
 	
 	/*for(const auto& tk : userinput){
@@ -86,9 +86,6 @@ void ConnectorToken::parser() {
 
 	
 	//parsing
-	//check for exit cmd
-	for(unsigned i = 0; i < v1.size(); ++i) 
-		if(v1.at(i) == "exit") exit(1);
 
 	int i = 0;
 	while(i < v1.size()) {
@@ -97,15 +94,14 @@ void ConnectorToken::parser() {
 		while(v1.at(i) != ";" && v1.at(i) != "||" && v1.at(i) != "&&") {
 			v2.push_back(v1.at(i));
 			numCmdArgs++;
-			cout << i << endl;
 			if(i == v1.size() - 1) 
 				break; //if last element of the string.		
 			i++;
 		}
 	//	cout << i << endl;		
                 
-	     	connector = v1.at(i);
-		cout << "This is the connector: " << connector << endl;;
+	    // 	connector = v1.at(i);
+	//	cout << "This is the connector: " << connector << endl;;
 			
 		stringify();
 		
