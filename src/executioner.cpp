@@ -2,6 +2,8 @@
 #include "../header/executioner.h"
 
 int Executioner::execute(char* args[]) {
+	//if (*args == "exit"){ exit(1);}
+	cout << "TEST: " << *args << endl;
 	pid_t pid = fork();
 	if(pid < 0) {
 		perror("forking failed");

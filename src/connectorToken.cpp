@@ -86,18 +86,23 @@ void ConnectorToken::parser() {
 
 	
 	//parsing
+	//check for exit cmd
+	for(unsigned i = 0; i < v1.size(); ++i) 
+		if(v1.at(i) == "exit") exit(1);
+
 	int i = 0;
 	while(i < v1.size()) {
 		int numCmdArgs = 0;
 		string connector = "";
-		while(v1.at(i) != ";" || v1.at(i) != "||" || v1.at(i) != "&&") {
+		while(v1.at(i) != ";" && v1.at(i) != "||" && v1.at(i) != "&&") {
 			v2.push_back(v1.at(i));
 			numCmdArgs++;
+			cout << i << endl;
 			if(i == v1.size() - 1) 
 				break; //if last element of the string.		
-		i++;
+			i++;
 		}
-		
+	//	cout << i << endl;		
                 
 	     	connector = v1.at(i);
 		cout << "This is the connector: " << connector << endl;;
@@ -105,12 +110,19 @@ void ConnectorToken::parser() {
 		stringify();
 		
 		if(connector == "&&") {
-			if(!(evaluate())) 
-				break;
+			if(!(evaluate())){
+				//cout << "evaluate failed, should return none"; 
+				return;
+			}
+			//else{cout << "evaluate ran.should run two cmds";}
 		}
 		else if(connector == "||") {
-			if(evaluate())
-				break;
+			if(evaluate()){
+                         //       cout << "evaluate succeeded, should return one";
+                                return;
+                        }
+                        //else{cout << "evaluate failed.should run other/none";}
+
 		}
 		else if(connector == ";")
 			evaluate();
