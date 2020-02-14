@@ -9,7 +9,7 @@ int main() {
 	string input;
 	getline(cin, input);
 
-	while(input != "exit") {
+	while(1) {
 		Tokenizer* t1 = new ConnectorToken(input);
                 t1->parser();
 		cout << "$ ";

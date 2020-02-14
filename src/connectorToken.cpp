@@ -37,10 +37,8 @@ void ConnectorToken::parser() {
 	for(unsigned i = 0; i < userinput.size(); i++) {
 		if(userinput.at(i) == '\"') {
 			qIndex = i;
-			break;	
-		
-	}
-		
+			break;		
+		}	
 	}
 	//cout << "This is my qIndex: " << qIndex << endl;
 	
@@ -49,7 +47,7 @@ void ConnectorToken::parser() {
 			pIndex = j;
 	}
 	//cout << "This is my pIndex: " << pIndex << endl;
-	//if (pIndex > 0
+	
 	if(pIndex > 0 && qIndex > 0  ) { 
 		if (pIndex < qIndex) 
 		userinput.resize(pIndex);
@@ -108,14 +106,14 @@ void ConnectorToken::parser() {
 		if(connector == "&&") {
 			if(!(evaluate())){
 				//cout << "evaluate failed, should return none"; 
-				return;
+				break;
 			}
 			//else{cout << "evaluate ran.should run two cmds";}
 		}
 		else if(connector == "||") {
 			if(evaluate()){
                          //       cout << "evaluate succeeded, should return one";
-                                return;
+                                break;
                         }
                         //else{cout << "evaluate failed.should run other/none";}
 

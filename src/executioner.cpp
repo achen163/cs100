@@ -2,7 +2,7 @@
 #include "../header/executioner.h"
 
 int Executioner::execute(char* args[]) {
-	//if (args[0] == "exit"){ exit(1);}
+	if (args[0] == "exit"){ exit(1);}
 	pid_t pid = fork();
 	if(pid < 0) {
 		perror("forking failed");
@@ -17,18 +17,21 @@ int Executioner::execute(char* args[]) {
    	                string cmdString(var);
         	        string errorMsg = "-bash: " + cmdString + ": command not found";
 			cout << errorMsg << endl;
-			perror(temp);
 			exit(1);
 			
 		}
 	} 
 	if(pid > 0) {
-		if(waitpid(-1, NULL, 0) == -1) 	perror("wait for child to finish"); 		
+		int status = 0;
+		int *statusPtr = &status;
+		if(waitpid(pid, statusPtr, 0) == -1) 	perror("wait for child to finish"); 		 
 		
-		return 1;
-	
+		if(WIFEXITED(status)) {
+			int exitStatus = WEXITSTATUS(status);
+			if(exitStatus == 0) return 0;
+			else return 1;
+		}
 	}
-	return 0;	
-	 // execvp is sucessful
+	return 0;
 	
 }
