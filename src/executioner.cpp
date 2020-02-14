@@ -18,14 +18,14 @@ int Executioner::execute(char* args[]) {
 			exit(1);
 			
 		}
-		return 0;
 	} 
 	if(pid > 0) {
 		if(waitpid(-1, NULL, 0) == -1) 	perror("wait for child to finish"); 		
 		
 		return 1;
 	
-	}	
+	}
+	return 0;	
 	 // execvp is sucessful
 	
 }
