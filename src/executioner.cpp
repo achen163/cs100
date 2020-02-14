@@ -14,7 +14,7 @@ int Executioner::execute(char* args[]) {
                         string cmdString(var);
 			string errorMsg = "-bash: " + cmdString + ": command not found";
 			perror(errorMsg.c_str());
-			exit(1);
+			return 1;
 		}
 	} 
 	if(pid > 0) {
