@@ -34,11 +34,14 @@ void ConnectorToken::parser() {
 			break;
 		}
 	}
+	cout << "This is my qIndex: " << qIndex << endl;
+	
 	for(unsigned j = 0; j < userinput.size(); j++) {
 		if(userinput.at(j) == '#') 
 			pIndex = j;
 	}
-	if(pIndex <  qIndex || userinput.at(0) != '\"') 
+	cout << "This is my pIndex: " << pIndex << endl;
+	if(pIndex <  qIndex ||  userinput.at(0) == '#' || (qIndex ==0 && pIndex >0)) 
 		userinput.resize(pIndex); 	
 	
 	//boost
@@ -53,7 +56,7 @@ void ConnectorToken::parser() {
 	for(int j = 0; j < v1.size(); j++){
 		std::cout << j << ". " << v1.at(j) << std::endl;
 	}
-	std::cout << "test done" << std::endl;
+	//std::cout << "test done" << std::endl;
 	
 	/*for(const auto& tk : userinput){
 		v1.push_back((char*)tk);
