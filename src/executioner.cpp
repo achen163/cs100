@@ -14,16 +14,15 @@ int Executioner::execute(char* args[]) {
                         string cmdString(var);
 			string errorMsg = "-bash: " + cmdString + ": command not found";
 			perror(errorMsg.c_str());
-			isValid = 1;
 			exit(1);
 		}
+		return 0;
 	} 
 	if(pid > 0) {
 		if(waitpid(-1, NULL, 0) == -1) 
 			perror("wait for child to finish"); 
-		if(isValid == 1) return 1;
-		else return 0;
+		return 1;
 	}	
-	return 0; // execvp is sucessful
+	 // execvp is sucessful
 	
 }
