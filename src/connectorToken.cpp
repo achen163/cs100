@@ -28,11 +28,19 @@ void ConnectorToken::stringify() {
 void ConnectorToken::parser() {
 	int qIndex = 0;
 	int pIndex = 0;
+	string unquoted;
+	for(unsigned i = 0; i < userinput.size(); i++) {
+		if(userinput.at(i) != '\"') 
+			unquoted += userinput.at(i);
+	}
+	cout << unquoted << endl;	
 	for(unsigned i = 0; i < userinput.size(); i++) {
 		if(userinput.at(i) == '\"') {
 			qIndex = i;
-			break;
-		}
+			break;	
+		
+	}
+		
 	}
 	cout << "This is my qIndex: " << qIndex << endl;
 	
@@ -41,8 +49,22 @@ void ConnectorToken::parser() {
 			pIndex = j;
 	}
 	cout << "This is my pIndex: " << pIndex << endl;
-	if(pIndex <  qIndex ||  userinput.at(0) == '#' || (qIndex ==0 && pIndex >0)) 
-		userinput.resize(pIndex); 	
+	//if (pIndex > 0
+	if(pIndex > 0 && qIndex > 0  ) { 
+		if (pIndex < qIndex) 
+		userinput.resize(pIndex);
+		else {
+			userinput = unquoted;
+		}
+	 }	
+	else if (pIndex > 0 && qIndex == 0) {
+		userinput.resize(pIndex);
+	}
+	 
+	else {
+		userinput = unquoted;
+	}	
+		
 	
 	//boost
 	typedef boost::tokenizer<boost::char_separator<char>> tokenizer;
