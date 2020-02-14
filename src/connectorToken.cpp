@@ -48,19 +48,20 @@ void ConnectorToken::parser() {
 	for(const auto& tk : userinput){
 		v1.push_back((char*)tk);
 	}
-
+	
 	//parsing
 	for(unsigned i = 0; i < v1.size(); i++) {
 		int numCmdArgs = 0;
 		string connector = "";
 		while(v1.at(i) != ";" || v1.at(i) != "||" || v1.at(i) != "&&") {
-			if(i == v1.size() - 1) { //if last element of the string.
-				numCmdArgs++;
-				v2.push_back(v1.at(i));
-			}
+			v2.push_back(v1.at(i));
+			numCmdArgs++;
+			if(i == v1.size() - 1) 
+				break; //if last element of the string.		
 		i++;
 		}
 		
+
 		connector = v1.at(i); 
 		
 		stringify();
