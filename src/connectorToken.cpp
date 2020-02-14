@@ -21,7 +21,7 @@ bool ConnectorToken::evaluate() {
 
 void ConnectorToken::stringify() {
 	for(unsigned i = 0; i < v2.size(); i++) 
-		v3.at(i) = (char*)v2.at(i).c_str();
+		v3.push_back((char*)v2.at(i).c_str());
 }
 
 
@@ -38,21 +38,31 @@ void ConnectorToken::parser() {
 		if(userinput.at(j) == '#') 
 			pIndex = j;
 	}
-	if(pIndex < qIndex) 
+	if(pIndex <  qIndex || userinput.at(0) != '\"') 
 		userinput.resize(pIndex); 	
 	
 	//boost
 	typedef boost::tokenizer<boost::char_separator<char>> tokenizer;
 	boost::char_separator<char> sep(" ");
 	tokenizer tok(userinput, sep);
-/*
-	for(const auto& tk : userinput){
-		v1.push_back((char*)tk);
+
+	for(tokenizer::iterator tok_iter = tok.begin(); tok_iter != tok.end(); ++tok_iter){
+	v1.push_back(static_cast<std::string>(*tok_iter));
 	}
-*/
+
+	for(int j = 0; j < v1.size(); j++){
+		std::cout << j << ". " << v1.at(j) << std::endl;
+	}
+	std::cout << "test done" << std::endl;
+	
+	/*for(const auto& tk : userinput){
+		v1.push_back((char*)tk);
+	}*/
+
 	
 	//parsing
-	for(unsigned i = 0; i < v1.size(); i++) {
+	int i = 0;
+	while(i < v1.size()) {
 		int numCmdArgs = 0;
 		string connector = "";
 		while(v1.at(i) != ";" || v1.at(i) != "||" || v1.at(i) != "&&") {
@@ -63,9 +73,10 @@ void ConnectorToken::parser() {
 		i++;
 		}
 		
-
-		connector = v1.at(i); 
-		
+                
+	     	connector = v1.at(i);
+		cout << "This is the connector: " << connector << endl;;
+			
 		stringify();
 		
 		if(connector == "&&") {
@@ -83,6 +94,7 @@ void ConnectorToken::parser() {
 	
 	//clear vectors 
 	v2.clear();
-	v3.clear();				
+	v3.clear();		
+	i++;		
 	}
 }

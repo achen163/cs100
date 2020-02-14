@@ -12,7 +12,7 @@ class ConnectorToken: public Tokenizer {
 		void parser();
 		 
 	private:
-	vector<char*> v1;
+	vector<string> v1;
 	vector<string>v2;
 	vector<char*>v3;
 	string userinput;               
