@@ -1,4 +1,1 @@
-exit #helloooo
-echo hello ; exit
-echo helloo && exit
-echa hello || exit
+echo hello ; echo my && echo name is || echo Caleb ; ls -a ; exit

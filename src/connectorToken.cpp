@@ -33,7 +33,7 @@ bool ConnectorToken::evaluate() {
 	array[v3.size()] = NULL;
 	
 	int executeResult = exe.execute(array);
-	std::cout << "executeResult: " << executeResult << std::endl;
+	//std::cout << "executeResult: " << executeResult << std::endl;
 	return (bool) executeResult;
 }
 
