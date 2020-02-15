@@ -1,0 +1,5 @@
+echo hello
+ls
+ls -a
+echo testdone
+exit
