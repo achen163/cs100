@@ -70,5 +70,9 @@ The base class is Tokenizer. ConnectorToken class inherits from Tokenizer. Execu
 
 The boost library was used during the tokenizing process. 
 
+#BUGS
+
+We countered several bugs regarding out connector. For instance, in echa hello && echo hi, hi still runs and vice versa for ||. We are planning to reconstruct our logic into an expression tree using the shunting algorithm for assignment 3.
+
 
 
