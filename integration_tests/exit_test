@@ -1,1 +1,1 @@
-echo hello ; echo my && echo name is || echo Caleb ; ls -a ; exit
+echo hi ; echo my && echo name is || echo Alex and Caleb ; ls -a ; exit
