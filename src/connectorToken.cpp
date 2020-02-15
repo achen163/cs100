@@ -5,6 +5,24 @@
 #include <typeinfo>
 #include <iostream>
 
+string ConnectorToken::returnv1String () {
+	string v1string = "";
+	for (int i = 0; i < v1.size(); i++) {
+		v1string += v1.at(i); 
+	}
+	
+return v1string;	
+}
+
+string ConnectorToken::returnv2String() { 
+	string v2string = "";
+	for(int i = 0; i < v2.size(); i++) {
+		v2string += v2.at(i);
+	}
+return v2string;
+}
+
+
 bool ConnectorToken::evaluate() {
 	Executioner exe;
 	char* array [v3.size() + 1];
@@ -13,10 +31,10 @@ bool ConnectorToken::evaluate() {
 	}
 
 	array[v3.size()] = NULL;
-
-	if(exe.execute(array) == 1)
-		return false;
-	return true;
+	
+	int executeResult = exe.execute(array);
+	std::cout << "executeResult: " << executeResult << std::endl;
+	return (bool) executeResult;
 }
 
 void ConnectorToken::stringify() {
@@ -74,7 +92,7 @@ void ConnectorToken::parser() {
 	}
 
 	//for(int j = 0; j < v1.size(); j++){
-	//	std::cout << j << ". " << v1.at(j) << std::endl;
+	//	std::cout << v1.at(j) << std::endl;
 	//}
 	//std::cout << "test done" << std::endl;
 	
@@ -102,16 +120,17 @@ void ConnectorToken::parser() {
 	//	cout << "This is the connector: " << connector << endl;;
 			
 		stringify();
-		
+		if(v2.at(0) == "exit") exit(1);
 		if(connector == "&&") {
-			if(!(evaluate())){
+			if((evaluate())){
 				//cout << "evaluate failed, should return none"; 
+				
 				break;
 			}
 			//else{cout << "evaluate ran.should run two cmds";}
 		}
 		else if(connector == "||") {
-			if(evaluate()){
+			if(!evaluate()){
                          //       cout << "evaluate succeeded, should return one";
                                 break;
                         }

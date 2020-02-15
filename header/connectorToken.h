@@ -10,7 +10,9 @@ class ConnectorToken: public Tokenizer {
 		virtual void stringify();
 		virtual bool evaluate();
 		void parser();
-		 
+		string returnv1String(); //unit test function 
+		string returnv2String();
+		
 	private:
 	vector<string> v1;
 	vector<string>v2;
