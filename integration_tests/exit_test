@@ -1,0 +1,4 @@
+exit #helloooo
+echo hello ; exit
+echo helloo && exit
+echa hello || exit
