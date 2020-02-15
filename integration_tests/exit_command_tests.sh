@@ -1,2 +1,3 @@
 #!/bin/sh
-../bin/rshell < exit_test 
+../rshell < exit_test 
+
