@@ -1,14 +1,14 @@
 #ifndef __CONNECTOR_H__
 #define __CONNECTOR_H__
 
-#include "command.h"
+#include "cmd.h"
 #include "string"
 
-class Connector : public Base {
+class Connector : public Token {
         public:
                 virtual string item() = 0;
-                virtual void setLeft(Base*) = 0;
-                virtual void setRight(Base*) = 0;
+                virtual void setLeft(Token*) = 0;
+                virtual void setRight(Token*) = 0;
                 virtual bool evaluate() = 0;
 
 
