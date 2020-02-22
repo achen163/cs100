@@ -50,22 +50,22 @@ void execute() {
 	if(input.size() == 0) { return; }
 	
 
-        /*typedef boost::tokenizer<boost::char_separator<char>> tokenizer;
+        typedef boost::tokenizer<boost::char_separator<char>> tokenizer;
         boost::char_separator<char> sep(" ");
         tokenizer tok(input, sep);
 
         for(tokenizer::iterator tok_iter = tok.begin(); tok_iter != tok.end(); ++tok_iter){
         	userInput.push_back(static_cast<string>(*tok_iter));
-        }*/
+        }
 
 
-	char * c = new char[input.size() + 1];
+	/*char * c = new char[input.size() + 1];
 	strcpy(c, input.c_str());
 	char * t = strtok(c, " ");
 	while(t != NULL) {
 		userInput.push_back(t);
 		t = strtok(NULL, " ");
-	}
+	}*/
 	
         for(vector<string>::iterator i = userInput.begin(); i != userInput.end(); ++i) {
 	
@@ -248,7 +248,7 @@ Token* root = tree.top();
 //execute
 if(root->evaluate()) {}
 
-delete[] c;
+//delete[] c;
 }
 
 bool hasMatch(vector<string> v) {
