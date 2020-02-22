@@ -50,22 +50,22 @@ void execute() {
 	if(input.size() == 0) { return; }
 	
 
-        typedef boost::tokenizer<boost::char_separator<char>> tokenizer;
+        /*typedef boost::tokenizer<boost::char_separator<char>> tokenizer;
         boost::char_separator<char> sep(" ");
         tokenizer tok(input, sep);
 
         for(tokenizer::iterator tok_iter = tok.begin(); tok_iter != tok.end(); ++tok_iter){
         	userInput.push_back(static_cast<string>(*tok_iter));
-        }
+        }*/
 
 
-	/*char * c = new char[input.size() + 1];
+	char * c = new char[input.size() + 1];
 	strcpy(c, input.c_str());
 	char * t = strtok(c, " ");
 	while(t != NULL) {
 		userInput.push_back(t);
 		t = strtok(NULL, " ");
-	}*/
+	}
 	
         for(vector<string>::iterator i = userInput.begin(); i != userInput.end(); ++i) {
 	
@@ -108,9 +108,8 @@ void execute() {
 		}
 	}
 
-	for(unsigned i = 0; i < userInput.size(); ++i) {
-		if(userInput.at(i).find(';'))
-			userInput.at(i).pop_back();
+	if(isConnector(userInput.at(userInput.size() - 1))) {
+		userInput.pop_back();
 	} 
 
 //shunting yard
