@@ -22,9 +22,38 @@ Cmd::Cmd(vector<string> t) {
 }
 
 bool Cmd::execute() { //helper for evaluate
-        pid_t pid = fork();
+        int status = 0;
+	pid_t pid = fork();
+	pid_t wait;
+	if(pid < 0) {
+		perror("forking child process failed");
+	}
+	else if(pid == 0) {
+		unsigned arraySize = commands.size() + 1;
+		char* args[arraySize];
+		for(unsigned i = 0; i < arraySize - 1; ++i) {
+			args[i] = (char*)(commands.at(i).c_str());
+		}
+		args[arraySize - 1] = NULL;
+		
+		if(execvp(args[0], args) < 0) {
+			cout << "execvp failed" << endl;
+			exit(1);
+		}
+	}
+	else {
+		wait = waitpid(pid, &status, 0);
+		if(wait == -1) {
+			cout << "waitpid error" << endl;
+			exit(EXIT_FAILURE);
+		}
+		if(WEXITSTATUS(status) == 0) {
+			return true;
+		}
+	}
+}
 
-        char* args[commands.size() + 1];
+        /*char* args[commands.size() + 1];
         for(unsigned i = 0; i < commands.size(); ++i) {
                 args[i] = (char*)(commands.at(i).c_str());
         }
@@ -48,12 +77,13 @@ bool Cmd::execute() { //helper for evaluate
                 if(waitpid(pid, statusPtr, 0) == -1) {
                         perror("wait for child to finish");
                 }
-                if(WIFEXITED(status)) {
- 		   	    return false ; //basically 1
+                if(WIFEXITED(status) == 0) {
+ 		   	    return true ; //basically 1
                 }
-                return true;
+               
         }
-}
+	return false;*/	
+
 
 
 bool Cmd::evaluate() {
@@ -130,10 +160,7 @@ bool Cmd::evaluate() {
                         }
                 }
         }
-
-        else  //if it's not a test
-                return execute();       //call helper
-        return false; //if nothing runs
+	return execute();    
 }
 
 string Cmd::item() {
