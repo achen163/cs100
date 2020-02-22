@@ -248,6 +248,7 @@ Token* root = tree.top();
 //execute
 if(root->evaluate()) {}
 
+delete[] c;
 }
 
 bool hasMatch(vector<string> v) {
