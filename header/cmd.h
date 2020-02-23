@@ -10,7 +10,7 @@ class Cmd : public Token {
         public:
                 Cmd() : Token() {}
                 Cmd(vector<string>);
-                bool execute();
+               
                 void setLeft(Token*);
                 void setRight(Token*);
                 void setInput(string);

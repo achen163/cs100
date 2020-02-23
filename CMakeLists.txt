@@ -7,7 +7,9 @@ SET(CMAKE_CXX_STANDARD 11)
 ADD_EXECUTABLE(rshell
    src/main.cpp
    src/cmd.cpp
-   src/connector.cpp
+   src/andConnector.cpp
+   src/semiConnector.cpp
+   src/orConnector.cpp
 )
 
 ADD_EXECUTABLE(test

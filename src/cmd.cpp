@@ -21,37 +21,6 @@ Cmd::Cmd(vector<string> t) {
         }
 }
 
-bool Cmd::execute() { //helper for evaluate
-        int status = 0;
-	pid_t pid = fork();
-	pid_t wait;
-	if(pid < 0) {
-		perror("forking child process failed");
-	}
-	else if(pid == 0) {
-		unsigned arraySize = commands.size() + 1;
-		char* args[arraySize];
-		for(unsigned i = 0; i < arraySize - 1; ++i) {
-			args[i] = (char*)(commands.at(i).c_str());
-		}
-		args[arraySize - 1] = NULL;
-		
-		if(execvp(args[0], args) < 0) {
-			cout << "execvp failed" << endl;
-			exit(1);
-		}
-	}
-	else {
-		wait = waitpid(pid, &status, 0);
-		if(wait == -1) {
-			cout << "waitpid error" << endl;
-			exit(EXIT_FAILURE);
-		}
-		if(WEXITSTATUS(status) == 0) {
-			return true;
-		}
-	}
-}
 
         /*char* args[commands.size() + 1];
         for(unsigned i = 0; i < commands.size(); ++i) {
@@ -106,8 +75,7 @@ bool Cmd::evaluate() {
                         }
 
                         else if(stat((char*)(cmd), &i) != 0) { //if path is false
-				
-        cout << "(False)" << endl;
+        			cout << "(False)" << endl;
                                 return false;
                         }
 
@@ -116,7 +84,7 @@ bool Cmd::evaluate() {
                                 return false;
                         }
                 }
-  else if(commands.at(1) == "-e") {
+		  else if(commands.at(1) == "-e") {
                         struct stat i;
                         const char* cmd = commands.at(2).c_str();
 
@@ -160,7 +128,40 @@ bool Cmd::evaluate() {
                         }
                 }
         }
-	return execute();    
+	else {
+		int status = 0;
+        pid_t pid = fork();
+        pid_t wait;
+        if(pid < 0) {
+                perror("forking child process failed");
+        }
+        else if(pid == 0) {
+                unsigned arraySize = commands.size() + 1;
+                char* args[arraySize];
+                for(unsigned i = 0; i < arraySize - 1; ++i) {
+                        args[i] = (char*)(commands.at(i).c_str());
+                }
+                args[arraySize - 1] = NULL;
+
+                if(execvp(args[0], args) < 0) {
+                        cout << "-bash: " + static_cast<string>(args[0]) + ": command not found" << endl;
+                        exit(1);
+                }
+        }
+        else {
+                wait = waitpid(pid, &status, 0);
+                if(wait == -1) {
+                        cout << "waitpid error" << endl;
+                        exit(EXIT_FAILURE);
+                }
+                if(WEXITSTATUS(status) == 0) {
+                        return true;
+                }
+        }
+
+	}
+	
+	return false;    
 }
 
 string Cmd::item() {
