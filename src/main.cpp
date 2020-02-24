@@ -40,12 +40,109 @@ void execute() {
 	
 	cout << "$ ";
 	getline(cin, input);
-	
-	for(unsigned i = 0; i < input.size(); ++i) {
-		if(input.at(i) == '#') {
-			input.resize(i);
+	int connectorcounter = 0;
+	int quotecounter = 0;
+	int firstquotecounter = 0;	
+	int firstpoundcounter = 0;
+	int secondquotecounter = 0;
+	int thirdquotecounter = 0;	
+	int secondpoundcounter = 0;	
+	unsigned i =  0;
+	for(i; i < input.size(); ++i) {
+		if(input.at(i) == '"') {
+			quotecounter++;	
+		}
+		
+	}
+	for (i =0; i < input.size(); ++i) {
+		if ((input.at(i) == '&' && input.at(i+1) == '&') || (input.at(i) == ';') || (input.at(i) == '|' && input.at(i+1) == '|')){
+			int connectorcounter = i+1;
+			cout << "Connector counter's index" << connectorcounter <<  endl;
 		}
 	}
+	for(i = 0; i < input.size(); ++i) {
+		if(input.at(i) == '"'){
+			firstquotecounter = i;
+			cout << "This is firstquote index: " << firstquotecounter << endl;
+			break;
+		}	
+	}		
+
+	if (firstquotecounter != 0 ) {
+		for (i = firstquotecounter + 1; i < input.size(); ++i) {		
+			if (input.at(i) == '"') {
+				secondquotecounter = i;
+				cout << "This is secondquote index: " << secondquotecounter << endl;
+				break;	
+			}
+		}
+	}
+	if (secondquotecounter != 0 ) {	
+		for (i = secondquotecounter + 1; i < input.size(); ++i) {
+		
+			if (input.at(i) == '"') {
+				thirdquotecounter = i;
+				cout << "This is thirdquote index: " << thirdquotecounter << endl;	
+				break;
+			}	
+			else {	
+				thirdquotecounter == 0;
+				}
+			}
+					
+	}
+				
+		
+		
+	
+	
+
+	for (i = 0; i < input.size(); ++i) {
+		if(input.at(i) == '#') {
+			firstpoundcounter = i;
+			cout << "first pound counter index: " << firstpoundcounter << endl;
+			break;
+		}
+	}
+	if (firstpoundcounter !=0) {
+		for (i = firstpoundcounter + 1; i < input.size(); i ++){
+				if (input.at(i)  == '#') {
+					secondpoundcounter = i;
+					cout << "second pound counter index: " << secondpoundcounter << endl;
+					break;
+				}
+				else{} 
+			} 
+	}
+	
+	
+	if (quotecounter == 0 && firstpoundcounter > 0 ) {
+		input.resize(firstpoundcounter);
+	}	
+	
+	else if(firstpoundcounter < firstquotecounter && connectorcounter == 0) {
+		input.resize(firstpoundcounter);
+		cout << thirdquotecounter << endl;
+	}
+	
+	else if (connectorcounter > 0 && (secondpoundcounter > 0 && thirdquotecounter ==0)) {
+		input.resize(secondpoundcounter);
+	
+	}
+	else if (connectorcounter != 0 && (secondpoundcounter < thirdquotecounter)) {
+		input.resize(secondpoundcounter);
+	}
+	else if (firstquotecounter != 0 && firstpoundcounter != 0 &&  firstquotecounter >  firstpoundcounter) {
+		input.resize(firstpoundcounter);
+	}
+	else if (firstquotecounter!=0 && firstpoundcounter ==0 ) {
+
+	}
+	
+	else {
+
+	}
+	
 	
 	if(input.size() == 0) { return; }
 	
@@ -115,7 +212,7 @@ void execute() {
 //shunting yard
 vector<string> cmds; //vector of commands. 
 
-int i = 0;
+ i = 0;
 while( i < userInput.size()) {
 	string item = userInput.at(i);
 	
