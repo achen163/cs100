@@ -13,7 +13,15 @@ TEST(executeTest, TestEchoHello) {
 	EXPECT_EQ(c->evaluate(), true);
 }
 
-Test(executeTest, TestEcho
+TEST(executeTest2, TestTestCmd) {
+	vector<string> sample2;
+	sample2.push_back("test");
+	sample2.push_back("-d");
+	sample2.push_back("test/file/path");
+	Cmd* c2 = new Cmd(sample2);
+	EXPECT_EQ(c2->evaluate(), false);
+}
+
 	
 	
 	
