@@ -142,44 +142,51 @@ int poundcounter = 0;
 
 	}
 	for (vector<string>::iterator i = userInput.begin(); i != userInput.end(); ++i) {
-
+		int pcounter = 0 ; //parentehses counter	
                 if(*i == "[" || *i == "]" || *i == "(" || *i == ")") {
                         continue;
                 }
                 else if(i->at(0) == '(') {
-                        string temp = i->substr(1, i->size() - 1);
-			*i = "(";
-			i = userInput.insert(i + 1, temp) - 1;
+                        string temp = i->substr(0,1);
+			*i = i->substr(1, i->size()-1);
+			i = userInput.insert(i , temp);
+			pcounter++;
 		}
 		else if(i->at(i->size() - 1) == ';') {
-			i->pop_back();
-			i = userInput.insert(i + 1, ";");
+			string semitemp = ";";
+			string cmdtemp = i->substr(0, i->size()-1);
+			*i = cmdtemp;
+			i = userInput.insert(i+1 , semitemp); 
+			//*i = semitemp;
+			//i = userInput.insert(i, cmdtemp);
 		}
-		else if(i->find(")") != string::npos) {
-			int freq = 0;
+		else if(i->find("(") != string::npos) {	
 			for(unsigned j = 0; j < i->size(); ++j) {
-				if(i->at(j) == ')') {
-					++freq;
+				if(i->at(j) == '(') {
+					pcounter++;
 				}
 			}
-
-			*i = i->substr(0, i->find(")"));
-			for(unsigned k = 0; k < freq; ++k) {
+		}
+		else if(i->find(")") != string::npos) {
+			*i = i->substr(0, i->find(")" ));
+			for(unsigned k = 0; k < pcounter; ++k) {
 				i = userInput.insert(i + 1, ")");
 			}
 		}
 		else if(i->at(0) == '[') {
-			string neg = i->substr(1, i->size() - 1);
-			*i = "[";
-			i = userInput.insert(i + 1, neg) - 1;
+			string temp = i->substr(0, 1);
+			*i = i->substr(1, i->size() -1);
+			i = userInput.insert(i, temp);
 		}
 		else if(i->at(i->size() - 1) == ']') {
-			*i = i->substr(0, i->size() - 1);
-			i = userInput.insert(i + 1, "]") - 1;
+			string temp = "]" ;
+			string cmdtemp = i->substr(0, i->size() -1);
+			*i = cmdtemp;
+			i = userInput.insert(i + 1, temp);
 		}
 	}
-
-	if(isConnector(userInput.at(userInput.size() - 1)) == true) {
+//case for if a token has a semicolon connector connected, will need to separate it
+	if(isSemiColon(userInput.at(userInput.size() - 1)) == true) {
 		userInput.pop_back();
 	} 
 
@@ -189,10 +196,10 @@ vector<string> cmds; //vector of commands.
  i = 0;
 while( i < userInput.size()) {
 	string item = userInput.at(i);
-	
+	//filling our commands vector by filtering out all connectors
 	if(isConnector(item) == false && leftParen(item) == false && rightParen(item) == false) {
 		cmds.push_back(item);
-	}
+		}
 	
 	else if(isConnector(item) == true) {
 		if(cmds.empty() == false) {
@@ -342,18 +349,13 @@ Token* Parser::connector(string c) {
 	else if(c == "||") return new orConnector();
 	else if(c == "&&") return new andConnector();
 }
-
-void Parser::outputVector(vector<string> v) {
-	for(unsigned i = 0; i < v.size(); ++i) {
-		cout << v.at(i) << endl;
+//used to space out semicolon if connected to the end of a cmd token
+bool Parser::isSemiColon(string c) {
+	if (c == ";") {
+		return true;
 	}
-}
+	return false;
 
-void Parser::outputQueue(queue<Token*> q) {
-	while(q.empty() == false) {
-		cout << q.front()->item() << endl;
-		q.pop();
-	}
 }
 
 

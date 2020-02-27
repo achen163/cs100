@@ -20,12 +20,8 @@ class Parser {
 	public:
 		Parser() {};
 		void execute();
-		void outputVector(vector<string>);
-		void outputQueue(queue<Token*>);
-		void outputPreorder(Token*);
-		void outputInorder(Token*);
-		void outputPostorder(Token*);
 		bool isConnector(string);
+		bool isSemiColon(string);
 		bool hasMatch(vector<string>);
 		bool leftParen(string);
 		bool rightParen(string);
