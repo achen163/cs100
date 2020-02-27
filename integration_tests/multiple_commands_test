@@ -1,4 +1,4 @@
-echo hello ; echo this is the directory ; ls -a
+echo hello ; echo this is the directory
 echo nice && echo to meet you
 echa fail || echo succeed 
 exit 
