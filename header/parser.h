@@ -1,12 +1,24 @@
-#ifndef __PARSER_HPP__
-#define __PARSER_HPP__
+#ifndef __PARSER_H__
+#define __PARSER_H__
 
-#include "token.h"
+#include <vector>
+#include <stack>
+#include <queue>
+#include "cmd.h"
+#include <iostream>
+#include <cstring>
 #include "connector.h"
+#include "andConnector.h"
+#include "semiConnector.h"
+#include "orConnector.h"
+#include "token.h"
+#include "parser.h"
+#include <boost/tokenizer.hpp>
+#include <iterator>
 
-class parser {
+class Parser {
 	public:
-		parser() {};
+		Parser() {};
 		void execute();
 		void outputVector(vector<string>);
 		void outputQueue(queue<Token*>);
