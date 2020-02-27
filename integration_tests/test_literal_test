@@ -1,0 +1,3 @@
+test -e test/file/path 
+test -e test/file/path && echo “path exists”
+exit
