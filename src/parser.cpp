@@ -15,8 +15,8 @@ void Parser::execute() {
 	int firstquotecounter = 0;	
 	int firstpoundcounter = 0;
 	int secondquotecounter = 0;
-	int thirdquotecounter = 0;	
-	int secondpoundcounter = 0;	
+	//int thirdquotecounter = 0;	
+	//int secondpoundcounter = 0;	
 	unsigned i =  0;
 	for(i; i < input.size(); ++i) {
 		if(input.at(i) == '"') {
@@ -122,7 +122,7 @@ int poundcounter = 0;
 	
 	if(input.size() == 0) { return; }
 	
-
+	//tokenizer splitting by spaces and pushing onto a vector
         typedef boost::tokenizer<boost::char_separator<char>> tokenizer;
         boost::char_separator<char> sep(" ");
         tokenizer tok(input, sep);
@@ -132,19 +132,17 @@ int poundcounter = 0;
         }
 
 
-	/*char * c = new char[input.size() + 1];
-	strcpy(c, input.c_str());
-	char * t = strtok(c, " ");
-	while(t != NULL) {
-		userInput.push_back(t);
-		t = strtok(NULL, " ");
-	}*/
 	
+	//first for loop just deletes quotation marks 
         for(vector<string>::iterator i = userInput.begin(); i != userInput.end(); ++i) {
 	
 		while(i->find("\"") != string::npos) {
 			i->erase(i->find("\""), 1);
 		}
+
+	}
+	for (vector<string>::iterator i = userInput.begin(); i != userInput.end(); ++i) {
+
                 if(*i == "[" || *i == "]" || *i == "(" || *i == ")") {
                         continue;
                 }
@@ -318,28 +316,10 @@ while(!tokens.empty()) {
 }
 
 Token* root = tree.top();
-//execute
+//execute from the root
 if(root->evaluate()) {}
 
-//delete[] c;
-}
 
-bool Parser::hasMatch(vector<string> v) {
-	stack<string> p;
-	for(unsigned i = 0; i < v.size(); ++i) {
-		if(leftParen(v.at(i)) == true) 
-			p.push(v.at(i));
-		else if(rightParen(v.at(i)) == true) {
-			if(p.empty() == true) return false;
-			else {
-				string t = p.top();
-				p.pop();
-				if(leftParen(t) == true) continue;
-				else return false;
-			}
-		}
-	}
-	return p.empty(); //returns if the queue is empty or not
 }			
 
 bool Parser::isConnector(string i) {
@@ -376,23 +356,4 @@ void Parser::outputQueue(queue<Token*> q) {
 	}
 }
 
-void Parser::outputPreorder(Token* t) {
-	if(t == nullptr) return;
-	cout << t->item() << " ";
-	outputPreorder(t->getLeft());
-	outputPreorder(t->getRight());
-}
 
-void Parser::outputInorder(Token* t) {
-	if(t == nullptr) return;
-	outputInorder(t->getLeft());
-	cout << t->item() << " ";
-	outputInorder(t->getRight());
-}
-
-void Parser::outputPostorder (Token* t) { 
-	if(t == nullptr) return;
-	(t->getLeft());
-	outputPostorder(t->getRight());
-	cout << t->item() << " ";
-}
