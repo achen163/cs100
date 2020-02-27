@@ -54,12 +54,14 @@ void execute() {
 		}
 		
 	}
+/*	
 	for (i =0; i < input.size(); ++i) {
 		if ((input.at(i) == '&' && input.at(i+1) == '&') || (input.at(i) == ';') || (input.at(i) == '|' && input.at(i+1) == '|')){
 			int connectorcounter = i+1;
 			cout << "Connector counter's index" << connectorcounter <<  endl;
 		}
 	}
+*/
 	for(i = 0; i < input.size(); ++i) {
 		if(input.at(i) == '"'){
 			firstquotecounter = i;
@@ -77,7 +79,7 @@ void execute() {
 			}
 		}
 	}
-	if (secondquotecounter != 0 ) {	
+/*	if (secondquotecounter != 0 ) {	
 		for (i = secondquotecounter + 1; i < input.size(); ++i) {
 		
 			if (input.at(i) == '"') {
@@ -94,17 +96,18 @@ void execute() {
 				
 		
 		
+*/	
 	
-	
-
+int poundcounter = 0;
 	for (i = 0; i < input.size(); ++i) {
 		if(input.at(i) == '#') {
 			firstpoundcounter = i;
+			poundcounter++;	
 			cout << "first pound counter index: " << firstpoundcounter << endl;
 			break;
 		}
 	}
-	if (firstpoundcounter !=0) {
+/*	if (firstpoundcounter !=0) {
 		for (i = firstpoundcounter + 1; i < input.size(); i ++){
 				if (input.at(i)  == '#') {
 					secondpoundcounter = i;
@@ -114,30 +117,33 @@ void execute() {
 				else{} 
 			} 
 	}
-	
+*/	
 	
 	if (quotecounter == 0 && firstpoundcounter > 0 ) {
 		input.resize(firstpoundcounter);
 	}	
-	
-	else if(firstpoundcounter < firstquotecounter && connectorcounter == 0) {
+	else if (poundcounter == 0 ) {
+
+	}	
+	else if(firstpoundcounter < firstquotecounter) {
 		input.resize(firstpoundcounter);
-		cout << thirdquotecounter << endl;
+		//cout << thirdquotecounter << endl;
 	}
 	
-	else if (connectorcounter > 0 && (secondpoundcounter > 0 && thirdquotecounter ==0)) {
+	
+	/*else if (connectorcounter > 0 && (secondpoundcounter > 0 && thirdquotecounter ==0)) {
 		input.resize(secondpoundcounter);
 	
 	}
 	else if (connectorcounter != 0 && (secondpoundcounter < thirdquotecounter)) {
 		input.resize(secondpoundcounter);
-	}
-	else if (firstquotecounter != 0 && firstpoundcounter != 0 &&  firstquotecounter >  firstpoundcounter) {
-		input.resize(firstpoundcounter);
-	}
-	else if (firstquotecounter!=0 && firstpoundcounter ==0 ) {
+	}*/
+	//else if (firstquotecounter != 0 && firstpoundcounter != 0 &&  firstquotecounter >  firstpoundcounter) {
+	//	input.resize(firstpoundcounter);
+//	}
+	//else if (firstquotecounter!=0 && firstpoundcounter ==0 ) {
 
-	}
+	//}
 	
 	else {
 
