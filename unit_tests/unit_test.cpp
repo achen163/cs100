@@ -12,6 +12,8 @@ TEST(executeTest, TestEchoHello) {
 	Cmd* c = new Cmd(sample);
 	EXPECT_EQ(c->evaluate(), true);
 }
+
+Test(executeTest, TestEcho
 	
 	
 	
