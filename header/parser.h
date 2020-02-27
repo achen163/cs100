@@ -25,7 +25,7 @@ class Parser {
 		void outputPreorder(Token*);
 		void outputInorder(Token*);
 		void outputPostorder(Token*);
-		void isConnector(string);
+		bool isConnector(string);
 		bool hasMatch(vector<string>);
 		bool leftParen(string);
 		bool rightParen(string);

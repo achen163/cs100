@@ -181,7 +181,7 @@ int poundcounter = 0;
 		}
 	}
 
-	if(isConnector(userInput.at(userInput.size() - 1))) {
+	if(isConnector(userInput.at(userInput.size() - 1)) == true) {
 		userInput.pop_back();
 	} 
 
