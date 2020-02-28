@@ -222,7 +222,7 @@ while( j < userInput.size()) {
 	else if(leftParen(item)) {
 		connectors.push(item);
 	}
-	else /*(rightParen(item))*/ {
+	else if (rightParen(item)) {
 		if(cmds.size() != 0) {
 			tokens.push(new Cmd(cmds));
 			cmds.clear();
