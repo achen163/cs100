@@ -110,14 +110,12 @@ int poundcounter = 0;
 	}*/
 	//else if (firstquotecounter != 0 && firstpoundcounter != 0 &&  firstquotecounter >  firstpoundcounter) {
 	//	input.resize(firstpoundcounter);
-//	}
+	//	}
 	//else if (firstquotecounter!=0 && firstpoundcounter ==0 ) {
 
 	//}
 	
-	else {
-
-	}
+	//else {}
 	
 	
 	if(input.size() == 0) { return; }
@@ -134,24 +132,18 @@ int poundcounter = 0;
 
 	
 	//first for loop just deletes quotation marks 
-        for(vector<string>::iterator i = userInput.begin(); i != userInput.end(); ++i) {
+        for(vector<string>::iterator i= userInput.begin(); i != userInput.end(); ++i) {
 	
-		while(i->find("\"") != string::npos) {
+		while(i->find("\"") != string::npos) { //delete all quotes
 			i->erase(i->find("\""), 1);
 		}
 
 	}
 	for (vector<string>::iterator i = userInput.begin(); i != userInput.end(); ++i) {
-		int pcounter = 0 ; //parentehses counter	
+		 //parentehses counter	
                 if(*i == "[" || *i == "]" || *i == "(" || *i == ")") {
-                        continue;
+                        continue; //next iteration
                 }
-                else if(i->at(0) == '(') {
-                        string temp = i->substr(0,1);
-			*i = i->substr(1, i->size()-1);
-			i = userInput.insert(i , temp);
-			pcounter++;
-		}
 		else if(i->at(i->size() - 1) == ';') {
 			string semitemp = ";";
 			string cmdtemp = i->substr(0, i->size()-1);
@@ -160,17 +152,25 @@ int poundcounter = 0;
 			//*i = semitemp;
 			//i = userInput.insert(i, cmdtemp);
 		}
-		else if(i->find("(") != string::npos) {	
+		else if(i->at(0) == '(') {
+                        string temp = i->substr(0,1);
+                        *i = i->substr(1, i->size()-1);
+                        i = userInput.insert(i , temp);
+                }
+
+		
+		else if(i->find(")") != string::npos) {
+			int rpcount = 0;
 			for(unsigned j = 0; j < i->size(); ++j) {
-				if(i->at(j) == '(') {
-					pcounter++;
+				if(i->at(j) == ')') {
+					++rpcount;
 				}
 			}
-		}
-		else if(i->find(")") != string::npos) {
-			*i = i->substr(0, i->find(")" ));
-			for(unsigned k = 0; k < pcounter; ++k) {
-				i = userInput.insert(i + 1, ")");
+			string temp = i->substr(0, i->find(")"));
+			*i = temp; 
+			//*i = i->substr(0, i->find(")"));
+			for(unsigned k = 0; k < rpcount; ++k) {
+				i = userInput.insert(i+1, ")");
 			}
 		}
 		else if(i->at(0) == '[') {
@@ -182,24 +182,27 @@ int poundcounter = 0;
 			string temp = "]" ;
 			string cmdtemp = i->substr(0, i->size() -1);
 			*i = cmdtemp;
-			i = userInput.insert(i + 1, temp);
+			i = userInput.insert(i + 1, temp) - 1;
 		}
 	}
 //case for if a token has a semicolon connector connected, will need to separate it
-	if(isSemiColon(userInput.at(userInput.size() - 1)) == true) {
+	/*if(isSemiColon(userInput.at(userInput.size() - 1)) == true) {
 		userInput.pop_back();
-	} 
+	} */
+	if(isConnector(userInput.at(userInput.size() - 1))) {
+		userInput.pop_back();
+	}
 
 //shunting yard
 vector<string> cmds; //vector of commands. 
 
- i = 0;
-while( i < userInput.size()) {
-	string item = userInput.at(i);
+unsigned j = 0;
+while( j < userInput.size()) {
+	string item = userInput.at(j);
 	//filling our commands vector by filtering out all connectors
 	if(isConnector(item) == false && leftParen(item) == false && rightParen(item) == false) {
 		cmds.push_back(item);
-		}
+	}
 	
 	else if(isConnector(item) == true) {
 		if(cmds.empty() == false) {
@@ -207,7 +210,7 @@ while( i < userInput.size()) {
 			cmds.clear();
 		}
 		if(connectors.empty() == false) {
-			while(leftParen(connectors.top()) == false) {
+			while(connectors.empty() == false && leftParen(connectors.top()) == false) {
 				tokens.push(connector(connectors.top()));
 				connectors.pop();
 			}
@@ -219,7 +222,7 @@ while( i < userInput.size()) {
 	else if(leftParen(item)) {
 		connectors.push(item);
 	}
-	else if(rightParen(item)) {
+	else /*(rightParen(item))*/ {
 		if(cmds.size() != 0) {
 			tokens.push(new Cmd(cmds));
 			cmds.clear();
@@ -231,7 +234,7 @@ while( i < userInput.size()) {
 		}
 		connectors.pop();
 	}
-++i;
+++j;
 }
 
 if(rightParen(userInput.at(userInput.size()-1)) == false) {
@@ -244,76 +247,19 @@ while(connectors.empty() == false) {
 	connectors.pop();
 }
 
-//cannot convert string to Token*
-/*int i = 0;
-while( i < userInput.size()) {
-	string item = userInput.at(i);
-	if(!leftParen(item) && !rightParen(item) && !isConnector(item)) { tokens.push(item); }
-	if(isConnector(item)) { connector.push(item);	}
-	if(leftParen(item)) { connector.push(item); }	
-	if(rightParen(item)) { 
-		while(!leftParen(item)) {
-			tokens.push(item);
-			connector.pop();
-		}
-		if(leftParen(connector.front())) { connector.pop(); }
-	}		
-}
-
-while(!connector.empty()) {
-	tokens.push(connector.front());
-	connector.pop();
-}
-*/
-//queue is flipped
-/* stack<Token*> flipper;
-while(!connectors.empty()) {
-	flipper.push(tokens.front());
-	tokens.pop();
-}
-while(!flipper.empty()) {
-	tokens.push(flipper.top());
-	flipper.pop();
-} */
 
 //build tree
-/*queue<Token*> tree;
-Token* leftChild = 0;
-Token* rightChild = 0; 
-
-Token* root = tokens.front(); //set root
-tokens.pop();
-tree.push(root);
-
-while(tokens.empty() == false) {
-	if(connector(tokens.front()->item())) {
-		leftChild = tree.front();
-		tree.pop();
-		rightChild = tree.front();
-		tree.pop();
-		tokens.front()->setLeft(leftChild);
-		tokens.front()->setRight(rightChild);
-		tree.push(tokens.front());
-	}
-	else {
-		tree.push(tokens.front());
-	}
-	tokens.pop();
-
-}*/ 
-
-
 stack<Token*> tree;
 Token* leftChild = 0;
 Token* rightChild = 0;
 while(!tokens.empty()) {
 	if(isConnector(tokens.front()->item())) {
-		rightChild = tree.top();
-		tree.pop();
 		leftChild = tree.top();
 		tree.pop();
-		tokens.front()->setLeft(leftChild);
-		tokens.front()->setRight(rightChild);
+		rightChild = tree.top();
+		tree.pop();
+		tokens.front()->setLeft(rightChild);
+		tokens.front()->setRight(leftChild);
 		tree.push(tokens.front());
 	}
 	else {
