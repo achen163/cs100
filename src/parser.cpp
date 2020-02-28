@@ -186,12 +186,12 @@ int poundcounter = 0;
 		}
 	}
 //case for if a token has a semicolon connector connected, will need to separate it
-	/*if(isSemiColon(userInput.at(userInput.size() - 1)) == true) {
+	if(isSemiColon(userInput.at(userInput.size() - 1)) == true) {
 		userInput.pop_back();
-	} */
-	if(isConnector(userInput.at(userInput.size() - 1))) {
+	} 
+	/*if(isConnector(userInput.at(userInput.size() - 1))) {
 		userInput.pop_back();
-	}
+	}*/
 
 //shunting yard
 vector<string> cmds; //vector of commands. 
@@ -248,11 +248,11 @@ while(connectors.empty() == false) {
 }
 
 
-//build tree
+//build tree in postfix notation
 stack<Token*> tree;
 Token* leftChild = 0;
 Token* rightChild = 0;
-while(!tokens.empty()) {
+while(tokens.size() != 0) {
 	if(isConnector(tokens.front()->item())) {
 		leftChild = tree.top();
 		tree.pop();
@@ -262,15 +262,15 @@ while(!tokens.empty()) {
 		tokens.front()->setRight(leftChild);
 		tree.push(tokens.front());
 	}
-	else {
+	else 
 		tree.push(tokens.front());
-	}
 	tokens.pop();
 }
 
-Token* root = tree.top();
 //execute from the root
-if(root->evaluate()) {}
+Token* root = tree.top();
+//need to force an if statement since evaluate returns a bool.
+if(root->evaluate())  {}
 
 
 }			

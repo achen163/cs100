@@ -1,3 +1,3 @@
 [ -e test/file/path ] && echo "path exists"
-[ -e test/file/path ]
+[ -e ../src/parser.cpp ]
 exit

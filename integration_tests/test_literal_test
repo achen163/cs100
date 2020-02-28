@@ -1,3 +1,6 @@
 test -e test/file/path 
 test -e test/file/path && echo “path exists”
+test -e ../src/main.cpp && echo "path exists"
+test -f ../src/main.cpp
+test -d ../src/main.cpp
 exit
