@@ -71,6 +71,6 @@ The base class is Tokenizer. ConnectorToken class inherits from Tokenizer. Execu
 The boost library was used during the tokenizing process. 
 
 #Assignment 3
-Building on top of assignment 2, we have included test command features for literal and symbolic. We also included precendence operators (paranthesis) to change the precedence of our executions. The tree was built in postfix notation and we utilized the shunting yard algorithm to manage precedence. 
+Building on top of assignment 2, we have included test command features for literal and symbolic. We also included precendence operators (paranthesis) to change the precedence of our executions. The tree was built in prefix notation and we utilized the shunting yard algorithm to manage precedence. 
 
 
