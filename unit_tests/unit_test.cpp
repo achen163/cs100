@@ -30,9 +30,3 @@ TEST(evaluateTest3, TestInvalidCmd) {
 	EXPECT_EQ(c3->evaluate(), false);
 }
 
-	
-	
-	
-
-
-
