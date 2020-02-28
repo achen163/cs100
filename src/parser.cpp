@@ -35,7 +35,7 @@ void Parser::execute() {
 	for(i = 0; i < input.size(); ++i) {
 		if(input.at(i) == '"'){
 			firstquotecounter = i;
-			cout << "This is firstquote index: " << firstquotecounter << endl;
+//			cout << "This is firstquote index: " << firstquotecounter << endl;
 			break;
 		}	
 	}		
@@ -44,7 +44,7 @@ void Parser::execute() {
 		for (i = firstquotecounter + 1; i < input.size(); ++i) {		
 			if (input.at(i) == '"') {
 				secondquotecounter = i;
-				cout << "This is secondquote index: " << secondquotecounter << endl;
+//				cout << "This is secondquote index: " << secondquotecounter << endl;
 				break;	
 			}
 		}
