@@ -13,8 +13,6 @@ class Cmd : public Token {
                
                 void setLeft(Token*);
                 void setRight(Token*);
-                void setInput(string);
-                void setOutput(string);
                 bool evaluate();
                 string item();
          private:

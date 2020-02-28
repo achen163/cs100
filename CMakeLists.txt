@@ -14,8 +14,15 @@ ADD_EXECUTABLE(rshell
 )
 
 ADD_EXECUTABLE(test
-   unit_tests/unit_test.cpp
+   unit_tests/unit_test.cpp	
+   src/parser.cpp
+   src/cmd.cpp
+   src/andConnector.cpp
+   src/semiConnector.cpp
+   src/orConnector.cpp
 )
 
+SET(DEBUG_FLAG "-g")
+add_definitions(${DEBUG_FLAG})
 TARGET_LINK_LIBRARIES(test gtest)
 TARGET_COMPILE_DEFINITIONS(test PRIVATE gtest_disable_pthreads=ON)

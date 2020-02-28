@@ -175,6 +175,3 @@ string Cmd::item() {
 void Cmd::setLeft(Token* leftNode) {} //set empty. not gonna use here
 void Cmd::setRight(Token* rightNode) {}
 
-void Cmd::setInput(string in) { input = in; }
-void Cmd:: setOutput(string out) { output = out; }
-
