@@ -249,7 +249,7 @@ while(connectors.empty() == false) {
 }
 
 
-//build tree in postfix notation
+//build tree in prefix notation
 stack<Token*> tree;
 Token* leftChild = 0;
 Token* rightChild = 0;

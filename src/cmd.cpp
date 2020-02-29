@@ -21,40 +21,7 @@ Cmd::Cmd(vector<string> t) {
         }
 }
 
-
-        /*char* args[commands.size() + 1];
-        for(unsigned i = 0; i < commands.size(); ++i) {
-                args[i] = (char*)(commands.at(i).c_str());
-        }
-
-        args[commands.size()] = NULL;
-
-        if(pid < 0)
-                perror("forking failed");
-        else if(pid == 0) { //child
-                if(execvp(args[0], args) == -1) { //not sure if args[0] is the only command
-                        const char* temp = "";
-                        const char* var = args[0];
-                        string cmdString(var);
-                        cout << "-bash: " + cmdString + ": command not found" << endl;
-                        exit(1);
-                }
-        }
-        else { //parent
-                int status = 0;
-                int *statusPtr = &status;
-                if(waitpid(pid, statusPtr, 0) == -1) {
-                        perror("wait for child to finish");
-                }
-                if(WIFEXITED(status) == 0) {
- 		   	    return true ; //basically 1
-                }
-               
-        }
-	return false;*/	
-
-
-
+        
 bool Cmd::evaluate() {
         if(commands.at(0) == "exit")  exit(0); //take care of exit
 
