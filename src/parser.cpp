@@ -248,28 +248,29 @@ while(connectors.empty() == false) {
 	connectors.pop();
 }
 
+Token* root = tokens.back();
 
 //build tree in prefix notation
 stack<Token*> tree;
 Token* leftChild = 0;
 Token* rightChild = 0;
 while(tokens.size() != 0) {
-	if(isConnector(tokens.front()->item())) {
-		leftChild = tree.top();
-		tree.pop();
-		rightChild = tree.top();
-		tree.pop();
-		tokens.front()->setLeft(rightChild);
-		tokens.front()->setRight(leftChild);
+	if(isConnector(tokens.front()->item()) == false) {
 		tree.push(tokens.front());
 	}
-	else 
-		tree.push(tokens.front());
+	else {
+		leftChild = tree.top();
+                tree.pop();
+                rightChild = tree.top();
+                tree.pop();
+                tokens.front()->setLeft(rightChild);
+                tokens.front()->setRight(leftChild);
+                tree.push(tokens.front());
+	}
 	tokens.pop();
 }
 
-//execute from the root
-Token* root = tree.top();
+
 //need to force an if statement since evaluate returns a bool.
 if(root->evaluate())  {}
 
