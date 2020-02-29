@@ -247,7 +247,7 @@ while(connectors.empty() == false) {
 	tokens.push(connector(connectors.top()));
 	connectors.pop();
 }
-
+//preset our root to the end of the queue which is the root of the tree
 Token* root = tokens.back();
 
 //build tree in prefix notation
@@ -256,9 +256,9 @@ Token* leftChild = 0;
 Token* rightChild = 0;
 while(tokens.size() != 0) {
 	if(isConnector(tokens.front()->item()) == false) {
-		tree.push(tokens.front());
+		tree.push(tokens.front()); //if not a command push to our stack
 	}
-	else {
+	else { //else set the left and right tree of children from our queue
 		leftChild = tree.top();
                 tree.pop();
                 rightChild = tree.top();
