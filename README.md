@@ -62,7 +62,7 @@ Both planning to Unit Test after each grandchild (Examples of grandchild: Andtok
  
 Help each other when needed
 
-#Assignment 2
+# Assignment 2
 
 Using composite patterns to build the basic layout of rshell, we have created 3 classes for use (tokenizer, connectorToken, and executioner). By taking the userinput as a string, our tokenizer becomes a main pointer object as a pure virtual abstract class. Our connectorToken implements the stringify, evaluate, and parser pure virtuals in tokenizer. It utilizes the parser to tokenize and parse the user input into a vector of tokens. We then convert this vector into an array of char* and use the executioner class to execute the commands and arguments. If commands are invalid, we throw an error message and exit. 
 
@@ -70,7 +70,7 @@ The base class is Tokenizer. ConnectorToken class inherits from Tokenizer. Execu
 
 The boost library was used during the tokenizing process. 
 
-#Assignment 3
-Building on top of assignment 2, we have included test command features for literal and symbolic. We also included precendence operators (paranthesis) to change the precedence of our executions. The tree was built in prefix notation and we utilized the shunting yard algorithm to manage precedence. 
+# Assignment 3
+For this assignment, we basically had to rebuild most of our old assignment 2. Building on top of the assignment 2 specs, we have included test command features for literal and symbolic. We also included precendence operators (paranthesis) to change the precedence of our executions. The tree was built after we utilized the shunting yard algorithm to manage precedence, putting it into postfix notation. For our parser, to test for parentheses or brackets, we implemeneted an algorithm that splits up parentheses and semicolons if connected to a command/argument. 
 
 
