@@ -34,9 +34,10 @@ TEST(evaluateTest2, TestTestCmd2) {
 
 TEST(evaluateTest2, TestTestCmd3) {
         vector<string> sample2;
-        sample2.push_back("test");
+        sample2.push_back("[");
         sample2.push_back("-e");
         sample2.push_back("test/file/path");
+	sample2.push_back("]");
         Cmd* c2 = new Cmd(sample2);
         EXPECT_EQ(c2->evaluate(), false);
 }
@@ -52,6 +53,7 @@ TEST(evaluateTest3, TestInvalidCmd) {
 
 TEST(executeTest, testInput) {
 	Parser p;
+	cout << "Testing execute(). Enter input" << endl;
 	p.execute();
 	
 }

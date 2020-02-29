@@ -1,4 +1,3 @@
-#this is commented
 echo hello #bye
 echo hello #"this is ignored"
 echo hello "this is #not ignored"
