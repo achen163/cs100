@@ -200,12 +200,9 @@ vector<string> cmds; //vector of commands.
 unsigned j = 0;
 while( j < userInput.size()) {
 	string item = userInput.at(j);
-	//filling our commands vector by filtering out all connectors
-	if(isConnector(item) == false && leftParen(item) == false && rightParen(item) == false) {
-		cmds.push_back(item);
-	}
+	//filling our commands vector by filtering out all connectors. Shunting yard converts vector to postfix to build the tree in prefix
 	
-	else if(isConnector(item) == true) {
+	if(isConnector(item) == true) {
 		if(cmds.empty() == false) {
 			tokens.push(new Cmd(cmds));
 			cmds.clear();
@@ -235,13 +232,15 @@ while( j < userInput.size()) {
 		}
 		connectors.pop();
 	}
+	else /*(isConnector(item) == false && leftParen(item) == false && rightParen(item) == false)*/ {
+                cmds.push_back(item);
+		if(j == userInput.size()-1) 
+			tokens.push(new Cmd(cmds));	
+        }
+
 ++j;
 }
 
-if(rightParen(userInput.at(userInput.size()-1)) == false) {
-	tokens.push(new Cmd(cmds));
-	cmds.clear();
-}
 
 while(connectors.empty() == false) {
 	tokens.push(connector(connectors.top()));

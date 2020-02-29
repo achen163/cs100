@@ -1,2 +1,4 @@
 (echo A && echo B) || (echo C && echo D)
+(echo A && echo B) && (echo C && echo D)
+((echo bye || echo don't print) && echo hey again)
 exit

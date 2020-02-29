@@ -1,4 +1,6 @@
-echo hello ; echo this is the directory
+echo hello; echo this is the directory
 echo nice && echo to meet you
 echa fail || echo succeed 
+echo hi; echo hello; ls; echo bye
+echo hey && echo hi && ls -a || echo don't print this
 exit 
