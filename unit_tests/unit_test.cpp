@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include "../header/cmd.h"
+#include "../header/parser.h"
 int main(int argc, char **argv) {
    ::testing::InitGoogleTest(&argc, argv);
    return RUN_ALL_TESTS();
@@ -28,5 +29,11 @@ TEST(evaluateTest3, TestInvalidCmd) {
 	test.push_back("hello");
 	Cmd* c3 = new Cmd(test);
 	EXPECT_EQ(c3->evaluate(), false);
+}
+
+TEST(executeTest, testInput) {
+	Parser p;
+	p.execute();
+	
 }
 
