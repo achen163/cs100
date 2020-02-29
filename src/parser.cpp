@@ -172,12 +172,13 @@ int poundcounter = 0;
 			for(unsigned k = 0; k < rpcount; ++k) {
 				i = userInput.insert(i+1, ")");
 			}
-		}
+		}//same algo as left parenthese
 		else if(i->at(0) == '[') {
 			string temp = i->substr(0, 1);
 			*i = i->substr(1, i->size() -1);
 			i = userInput.insert(i, temp);
 		}
+		//same algo as semi colon
 		else if(i->at(i->size() - 1) == ']') {
 			string temp = "]" ;
 			string cmdtemp = i->substr(0, i->size() -1);
