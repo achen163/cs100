@@ -17,11 +17,30 @@ TEST(evlaluateTest, TestEchoHello) {
 TEST(evaluateTest2, TestTestCmd) {
 	vector<string> sample2;
 	sample2.push_back("test");
-	sample2.push_back("-d");
+	sample2.push_back("-f");
 	sample2.push_back("test/file/path");
 	Cmd* c2 = new Cmd(sample2);
 	EXPECT_EQ(c2->evaluate(), false);
 }
+
+TEST(evaluateTest2, TestTestCmd2) {
+        vector<string> sample2;
+        sample2.push_back("test");
+        sample2.push_back("-d");
+        sample2.push_back("test/file/path");
+        Cmd* c2 = new Cmd(sample2);
+        EXPECT_EQ(c2->evaluate(), false);
+}
+
+TEST(evaluateTest2, TestTestCmd3) {
+        vector<string> sample2;
+        sample2.push_back("test");
+        sample2.push_back("-e");
+        sample2.push_back("test/file/path");
+        Cmd* c2 = new Cmd(sample2);
+        EXPECT_EQ(c2->evaluate(), false);
+}
+
 
 TEST(evaluateTest3, TestInvalidCmd) {
 	vector<string> test;

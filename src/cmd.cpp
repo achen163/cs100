@@ -36,15 +36,16 @@ bool Cmd::evaluate() {
                 if(commands.at(1) == "-f") {
                         struct stat i;
                         const char* cmd = commands.at(2).c_str();
-                        if(i.st_mode & S_IFREG) {
+
+                        if(stat((char*)(cmd), &i) != 0) { //if path is false
+        			cout << "(False)" << endl;
+                                return false;
+                        }
+			else if(i.st_mode & S_IFREG) {
                                 cout << "(True)" << endl;
                                 return true;
                         }
 
-                        else if(stat((char*)(cmd), &i) != 0) { //if path is false
-        			cout << "(False)" << endl;
-                                return false;
-                        }
 
                         else {
                                 cout << "(False)" << endl;
@@ -69,14 +70,16 @@ bool Cmd::evaluate() {
                 else if(commands.at(1) == "-d") {
                         struct stat i;
                         const char* cmd = commands.at(2).c_str();
-                        if(i.st_mode & S_IFDIR) {
-                                cout << "(True)" << endl;
-                                return true;
-                        }
-                        else if(stat((char*)(cmd), &i) != 0) {
+                        
+                        if(stat((char*)(cmd), &i) != 0) {
                                 cout << "(False)" << endl;
                                 return false;
                         }
+			else if(i.st_mode & S_IFDIR) {
+                                cout << "(True)" << endl;
+                                return true;
+                        }
+
                         else {
                                 cout << "(False)" << endl;
                                 return false;
