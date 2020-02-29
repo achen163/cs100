@@ -73,7 +73,7 @@ int poundcounter = 0;
 		if(input.at(i) == '#') {
 			firstpoundcounter = i;
 			poundcounter++;	
-			cout << "first pound counter index: " << firstpoundcounter << endl;
+			//cout << "first pound counter index: " << firstpoundcounter << endl;
 			break;
 		}
 	}
