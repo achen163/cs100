@@ -12,11 +12,7 @@ void pipeConnector::setRight(Token* token) {
 	right = token;	
 }
 
-bool pipeConnector::evaluate() {
-	
-
-}
-int pipeConnector::evaluate2(int inputfile, int outputfile) {
+bool pipeConnector::evaluate(int inputfile, int outputfile) {
 	int fds[2];
 	pipe(fds);
 	
@@ -27,4 +23,8 @@ int pipeConnector::evaluate2(int inputfile, int outputfile) {
 	close(fds[0]);
 
 	return true;
+}
+
+bool pipeConnector::evaluate2() {
+
 }
