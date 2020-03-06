@@ -137,8 +137,15 @@ int poundcounter = 0;
 		while(i->find("\"") != string::npos) { //delete all quotes
 			i->erase(i->find("\""), 1);
 		}
-
 	}
+
+	int redirectCounter = 0;
+		if(find(userInput.begin(), userInput.end(), ">") != userInput.end()) 
+			++redirectCounter;
+		else if(find(userInput.begin(), userInput.end(), ">>") != userInput.end())
+			++redirectCounter;
+		else if(find(userInput.begin(), userInput.end(), "<") != userInput.end())
+			++redirectCounter;
 	for (vector<string>::iterator i = userInput.begin(); i != userInput.end(); ++i) {
 		 //parentehses counter	
                 if(*i == "[" || *i == "]" || *i == "(" || *i == ")") {
@@ -271,10 +278,12 @@ while(tokens.size() != 0) {
 
 
 //need to force an if statement since evaluate returns a bool.
-if(root->evaluate())  {}
-
-
-}			
+if(redirectCounter > 0)  {
+	if(root->evaluate(0,1));
+}
+else 
+	if(root->evaluate2());
+			
 
 bool Parser::isConnector(string i) {
 	if(i == ";" || i == "||" || i == "&&") return true;

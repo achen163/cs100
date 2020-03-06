@@ -13,7 +13,8 @@ class Cmd : public Token {
                
                 void setLeft(Token*);
                 void setRight(Token*);
-                bool evaluate();
+                bool evaluate(int inputFile, int outputFile);
+		bool evaluate2();
                 string item();
 		void setInput(string);
 		void setOutput(string);
@@ -22,7 +23,7 @@ class Cmd : public Token {
                 string cmdName;
                 vector<string> commands;
                 string input;
-                striing output;
+                string output;
 
 };
 #endif
