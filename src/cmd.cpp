@@ -104,6 +104,7 @@ bool Cmd::evaluate(int inputBit, int outputBit) {
         pid_t wait;
         if(pid < 0) {
                 perror("forking child process failed");
+		exit(1);
         }
         else if(pid == 0) {
 		
@@ -138,6 +139,11 @@ bool Cmd::evaluate(int inputBit, int outputBit) {
 
 		char* arguments[theCommands.size()+1];
 		
+		for(unsigned x = 0; x < theCommands.size(); ++x) 
+			arguments[x] = (char*)(theCommands.at(x).c_str());
+		
+		arguments[theCommands.size()] = NULL;
+
 		if(input.empty() == false && output.empty() == false) {
 			bool isInput = false;
 			for(unsigned i = 0; i < commands.size(); ++i) {

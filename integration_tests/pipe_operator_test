@@ -1,0 +1,12 @@
+echo pipetest > pipe.txt 
+echo passed >> pipe.txt
+cat < pipe.txt | tr A-z a-z | tee teeOutput.txt | tr a-z A-Z > finalOutput.txt
+cat < pipe.txt | tr a-z A-z
+
+cat finalOutput.txt
+
+rm pipe.txt
+rm teeOutput.xt
+rm finalOutput.txt
+exit
+
