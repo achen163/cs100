@@ -122,8 +122,8 @@ bool Cmd::evaluate(int inputBit, int outputBit) {
 			else break;
 		}
 
-		for(unsigned i = 0; z < commands.size(); ++z) {
-			if(isRedirector(commands.at(z))) { 
+		for(unsigned i = 0; i < commands.size(); ++i) {
+			if(isRedirector(commands.at(i))) { 
 				if(commands.at(i) == ">" || commands.at(i) == ">>") {
 					setOutput(commands.at(i+1));
 				}
