@@ -11,6 +11,7 @@ ADD_EXECUTABLE(rshell
    src/andConnector.cpp
    src/semiConnector.cpp
    src/orConnector.cpp
+   src/pipeConnector.cpp
 )
 
 ADD_EXECUTABLE(test
@@ -20,7 +21,9 @@ ADD_EXECUTABLE(test
    src/andConnector.cpp
    src/semiConnector.cpp
    src/orConnector.cpp
+   src/pipeConnector.cpp
 )
+
 
 SET(DEBUG_FLAG "-g")
 add_definitions(${DEBUG_FLAG})

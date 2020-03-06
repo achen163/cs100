@@ -15,11 +15,14 @@ class Cmd : public Token {
                 void setRight(Token*);
                 bool evaluate();
                 string item();
+		void setInput(string);
+		void setOutput(string);
+		bool isRedirector(string);
          private:
                 string cmdName;
                 vector<string> commands;
                 string input;
-                string output;
+                striing output;
 
 };
 #endif

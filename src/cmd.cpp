@@ -22,7 +22,7 @@ Cmd::Cmd(vector<string> t) {
 }
 
         
-bool Cmd::evaluate() {
+bool Cmd::evaluate(int inputBit, int outputBit) {
         if(commands.at(0) == "exit")  exit(0); //take care of exit
 
         if(commands.at(0) == "test" || commands.at(0) == "[") {
@@ -106,21 +106,175 @@ bool Cmd::evaluate() {
                 perror("forking child process failed");
         }
         else if(pid == 0) {
-
+		
 		//add piping and redirection here
+		if(isRedirector(commands.at(commands.size()-1))) { 
+			cout << "Error when trying to use a redirector\n";
+			return false;
+		}
+	
+		vector<string> theCommands; //vector without redirectors
+		unsigned z = 0;
+		for(z = 0; z < commands.size(); ++z) {
+			if(isRedirector(theCommands.at(z)) == false) {
+				theCommands.push_back(commands.at(z));
+			}
+			else break;
+		}
 
-                unsigned arraySize = commands.size() + 1;
-                char* args[arraySize];
-                for(unsigned i = 0; i < arraySize - 1; ++i) {
-                        args[i] = (char*)(commands.at(i).c_str());
-                }
-                args[arraySize - 1] = NULL;
+		for(unsigned i = 0; z < commands.size(); ++z) {
+			if(isRedirector(commands.at(z))) { 
+				if(commands.at(i) == ">>" || commands.at(i) == ">>") {
+					setOutput(commands.at(i+1));
+				}
+				else if(commands.at(i) == "<") {
+					setInput(commands.at(i+1));
+				}
+				else {
+					cout << "Error when trying to use a redirector\n";
+				}
+			}
+		}
 
-                if(execvp(args[0], args) < 0) {
-                        cout << "-bash: " + static_cast<string>(args[0]) + ": command not found" << endl;
-                        exit(1);
-                }
+		char* arguments[theCommands.size()+1];
+		
+		if(input.empty() == false && output.empty() == false) {
+			bool isInput = false;
+			for(unsigned i = 0; i < commands.size(); ++i) {
+				if(commands.at(i) == ">") 
+					isInput = true;
+			}
+			if(isInput) {
+				int ifDetail = open(input.c_str(), O_RDONLY);
+				int ofDetail = open(output.c_str(), O_RDWR | O_TRUNC | O_CREAT, S_IRWXU | S_IRWXG);
+				
+				if(ofDetail < 0 || ifDetail < 0) {
+					cout << "Error. Cannot open the file" << endl;
+					return false;
+				}
+				dup2(ifDetail, STDIN_FILENO);
+				dup2(ofDetail, STDOUT_FILENO);
+				close(ifDetail); 
+				close(ofDetail); 
+				dup2(inputBit, 0); //put input in memory 0
+				dup2(outputBit, 1); //put output in memory 1
+				if(inputBit != 0) 
+					close(inputBit); //close input since it's not 0
+				else if(outputBit != 1)
+					close(outputBit);
+				if(execvp(*arguments, arguments) < 0) {
+					cout << "Error: execvp failed" << endl;
+`					exit(1);
+				}
+			}
+			else { 
+				int ifDetail = open(input.c_str(), O_RDONLY);
+				int ofDetail = open(output.c_str(), O_RDWR | O_APPEND | O_CREAT, S_IRWXU | S_IRWXG);
+
+				if(ifDetail < 0 || ofDetail < 0) {
+					cout << "Error. Cannot open the file" << endl;
+					return false;
+				}
+				
+				dup2(ifDetail, STDIN_FILENO); 
+				dup2(ofDetail, STDOUT_FILENO);
+				close(ifDetail);
+				close(ofDetail);
+				dup2(inputBit, 0);
+				dup2(outputBit, 1);
+				if(inputBit != 0) close(inputBit); 
+				else if(outputBit != 1) close(outputBit);
+				
+				if(execvp(*arguments, arguments) < 0) {
+					cout << "Error: execvp failed" << endl;
+					exit(1);
+				}
+			}
+		}
+    	        else if(output.empty() == false) {
+                	bool isInput = false;
+                	for(unsigned i = 0; i < commands.size(); ++i) {
+                        	if(commands.at(i) == ">")
+                                isInput = true;
+                 	}
+                	if(isInput) {
+				int fileDetail = open(output.c_str(), O_RDWR | O_TRUNC | O_CREAT, S_IRWXU | S_IRWXG);
+				int (fileDetail < 0) {
+					cout << "Error. Cannot open the file" << endl;
+					return false;
+				}
+				dup2(fileDetail, STDOUT_FILENO);
+				close(fileDetail);
+				dup2(inputBit, 0);
+				dup2(outputBit, 1);
+				
+				if(inputBit != 0) close(inputBit);
+				else if(outputBit != 1) close(outputBit);
+				
+				if(execvp(*arguments, arguments) < 0) {
+					cout << "Error: execvp failed" << endl;
+					exit(1);
+				}	
+			}
+			else {	
+				int fileDetail = open(output.c_str(), O_RDWR | O_APPEND | O_CREAT, S_IRWXU | S_IRWXG);
+				int (fileDetail < 0) {
+					cout << "Error. Cannot open the file" << endl;
+					return false;
+				}
+				dup2(fileDetail, STDOUT_FILENO);
+				close(fDetail);
+				dup2(inputBit, 0);
+				dup2(outputBit, 1);
+				
+				if(inputBit != 0) close(inputBit);
+				else if(outputBit != 1) close(outputBit);
+				
+				if(execvp(*arguments, arguments) < 0) {
+					cout << "Error: execvp failed" << endl;
+					exit(1);
+				}
+			}	
+			
+		}
+		else if(inputFile.empty() == false) {
+			int fileDetail = open(input.c_str(), O_RDONLY)
+			if(fileDetail < 0) { 
+				cout << "Error. Cannot open the file" << endl;
+				return false;
+			}
+			dup2(fileDetail, STDOUT_FILENO);
+                                close(fileDetail);
+                                dup2(inputBit, 0);
+                                dup2(outputBit, 1);
+
+                                if(inputBit != 0) close(inputBit);
+                                else if(outputBit != 1) close(outputBit);
+
+                                if(execvp(*arguments, arguments) < 0) {
+                                        cout << "Error: execvp failed" << endl;
+                                        exit(1);
+                                }
+               	}
+			
+                else {
+			unsigned arraySize = commands.size() + 1;
+                	char* args[arraySize];
+                	for(unsigned i = 0; i < arraySize - 1; ++i) {
+                        	args[i] = (char*)(commands.at(i).c_str());
+                	}
+                	args[arraySize - 1] = NULL;
+
+			if(inputBit != 0) close(inputBit);
+			else if(outputBit != 1) close(outputBit);
+
+               		if(execvp(args[0], args) < 0) {
+                        	cout << "-bash: " + static_cast<string>(args[0]) + ": command not found" << endl;
+                        	exit(1);
+                	}
+		}
         }
+
         else {
                 wait = waitpid(pid, &status, 0);
                 if(wait == -1) {
@@ -147,4 +301,18 @@ string Cmd::item() {
 
 void Cmd::setLeft(Token* leftNode) {} //set empty. not gonna use here
 void Cmd::setRight(Token* rightNode) {}
+
+void Cmd::setInput(string inputFile) { 
+	input = inputFile;
+}
+
+void Cmd::setOutput(string outputFile) {
+	output = outputFile;
+}
+
+bool Cmd::isRedirector(string inputFromUser) {
+	if(inputFromUser == ">" || inputFromUser == ">>" || inputFromUser == "<")
+                return true;
+        return false;
+}
 
