@@ -106,6 +106,9 @@ bool Cmd::evaluate() {
                 perror("forking child process failed");
         }
         else if(pid == 0) {
+
+		//add piping and redirection here
+
                 unsigned arraySize = commands.size() + 1;
                 char* args[arraySize];
                 for(unsigned i = 0; i < arraySize - 1; ++i) {
