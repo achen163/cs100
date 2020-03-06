@@ -291,7 +291,7 @@ else if(redirectCounter > 0)  {
 else 
 	if(root->evaluate2());
 			
-
+}
 bool Parser::isConnector(string i) {
 	if(i == ";" || i == "||" || i == "&&") return true;
 	return false; 

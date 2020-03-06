@@ -11,7 +11,7 @@ TEST(evlaluateTest, TestEchoHello) {
 	sample.push_back("echo");
 	sample.push_back("hello");
 	Cmd* c = new Cmd(sample);
-	EXPECT_EQ(c->evaluate(), true);
+	EXPECT_EQ(c->evaluate2(), true);
 }
 
 TEST(evaluateTest2, TestTestCmd) {
@@ -20,7 +20,7 @@ TEST(evaluateTest2, TestTestCmd) {
 	sample2.push_back("-f");
 	sample2.push_back("test/file/path");
 	Cmd* c2 = new Cmd(sample2);
-	EXPECT_EQ(c2->evaluate(), false);
+	EXPECT_EQ(c2->evaluate2(), false);
 }
 
 TEST(evaluateTest2, TestTestCmd2) {
@@ -29,7 +29,7 @@ TEST(evaluateTest2, TestTestCmd2) {
         sample2.push_back("-d");
         sample2.push_back("test/file/path");
         Cmd* c2 = new Cmd(sample2);
-        EXPECT_EQ(c2->evaluate(), false);
+        EXPECT_EQ(c2->evaluate2(), false);
 }
 
 TEST(evaluateTest2, TestTestCmd3) {
@@ -39,7 +39,7 @@ TEST(evaluateTest2, TestTestCmd3) {
         sample2.push_back("test/file/path");
 	sample2.push_back("]");
         Cmd* c2 = new Cmd(sample2);
-        EXPECT_EQ(c2->evaluate(), false);
+        EXPECT_EQ(c2->evaluate2(), false);
 }
 
 
@@ -48,7 +48,7 @@ TEST(evaluateTest3, TestInvalidCmd) {
 	test.push_back("echa");
 	test.push_back("hello");
 	Cmd* c3 = new Cmd(test);
-	EXPECT_EQ(c3->evaluate(), false);
+	EXPECT_EQ(c3->evaluate2(), false);
 }
 
 TEST(executeTest, testInput) {

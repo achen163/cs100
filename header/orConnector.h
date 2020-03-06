@@ -7,7 +7,8 @@ class orConnector : public Connector {
 public:
         orConnector() : Connector() {left = NULL; right = NULL;}
         string item();
-        bool evaluate();
+        bool evaluate(int, int);
+	bool evaluate2();
         void setLeft(Token*);
         void setRight(Token*);
 

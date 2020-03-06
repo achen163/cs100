@@ -3,8 +3,13 @@
 string semiConnector::item() {
         return ";";
 }
+bool semiConnector::evaluate(int inputFile, int ouputFile) {
+	left->evaluate(0,1);
+	return right->evaluate(0,1);	
 
-bool semiConnector::evaluate() {
+}
+
+bool semiConnector::evaluate2() {
 		//semicolon evaluates both sides regardless
        left->evaluate();       //evaluate left side
        return right->evaluate(); //evaluate then right side in case of chain
