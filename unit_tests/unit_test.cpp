@@ -51,10 +51,12 @@ TEST(evaluateTest3, TestInvalidCmd) {
 	EXPECT_EQ(c3->evaluate2(), false);
 }
 
+
 TEST(executeTest, testInput) {
 	Parser p;
 	cout << "Testing execute(). Enter input" << endl;
 	p.execute();
 	
 }
+
 

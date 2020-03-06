@@ -6,7 +6,7 @@ cat < pipe.txt | tr a-z A-z
 cat finalOutput.txt
 
 rm pipe.txt
-rm teeOutput.xt
+rm teeOutput.txt
 rm finalOutput.txt
 exit
 

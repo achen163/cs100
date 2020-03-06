@@ -11,6 +11,7 @@
 #include "andConnector.h"
 #include "semiConnector.h"
 #include "orConnector.h"
+#include "pipeConnector.h"
 #include "token.h"
 #include "parser.h"
 #include <boost/tokenizer.hpp>
