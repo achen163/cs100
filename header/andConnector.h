@@ -8,7 +8,8 @@ class andConnector : public Connector {
 public:
         andConnector() : Connector() {left = NULL; right = NULL;}
         string item();
-        bool evaluate();
+        bool evaluate(int, int);
+	bool evaluate2();
         void setLeft(Token*);
         void setRight(Token*);
 

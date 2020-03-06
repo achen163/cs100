@@ -13,7 +13,9 @@ class Token {
                 virtual void setRight(Token*) = 0;
                 virtual string item() = 0;
                 virtual bool evaluate(int inputBit, int outputBit) = 0;
-        private:
+        	virtual bool evaluate2() = 0;
+		
+	private:
                 Token* left;
                 Token* right;
 };
