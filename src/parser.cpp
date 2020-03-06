@@ -146,6 +146,10 @@ int poundcounter = 0;
 			++redirectCounter;
 		else if(find(userInput.begin(), userInput.end(), "<") != userInput.end())
 			++redirectCounter;
+
+	int pipeCounter = 0;
+		if(find(userInput.begin(), userInput.end(), "|") != userInput.end()) 
+			++pipeCounter;
 	for (vector<string>::iterator i = userInput.begin(); i != userInput.end(); ++i) {
 		 //parentehses counter	
                 if(*i == "[" || *i == "]" || *i == "(" || *i == ")") {
@@ -278,7 +282,10 @@ while(tokens.size() != 0) {
 
 
 //need to force an if statement since evaluate returns a bool.
-if(redirectCounter > 0)  {
+if(pipeCounter > 0) {
+	if(root->evaluate(0,1);
+}
+else if(redirectCounter > 0)  {
 	if(root->evaluate(0,1));
 }
 else 
