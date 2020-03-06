@@ -311,6 +311,7 @@ Token* Parser::connector(string c) {
 	if(c == ";") return new semiConnector();
 	else if(c == "||") return new orConnector();
 	else if(c == "&&") return new andConnector();
+	else if(c == "|") return new pipeConnector();
 }
 //used to space out semicolon if connected to the end of a cmd token
 bool Parser::isSemiColon(string c) {
