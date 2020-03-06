@@ -164,7 +164,7 @@ bool Cmd::evaluate(int inputBit, int outputBit) {
 					close(outputBit);
 				if(execvp(*arguments, arguments) < 0) {
 					cout << "Error: execvp failed" << endl;
-`					exit(1);
+					exit(1);
 				}
 			}
 			else { 
