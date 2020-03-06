@@ -283,7 +283,7 @@ while(tokens.size() != 0) {
 
 //need to force an if statement since evaluate returns a bool.
 if(pipeCounter > 0) {
-	if(root->evaluate(0,1);
+	if(root->evaluate(0,1));
 }
 else if(redirectCounter > 0)  {
 	if(root->evaluate(0,1));

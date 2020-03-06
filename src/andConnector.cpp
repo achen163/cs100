@@ -12,11 +12,11 @@ bool andConnector::evaluate(int inputfile, int outputfile){
 }
 
 bool andConnector::evaluate2() {
-	if (left->evaluate() == false) {
+	if (left->evaluate2() == false) {
 		return false;
 	}
 	else {
-		return right->evaluate(0,1);
+		return right->evaluate2();
 	}
 
 }

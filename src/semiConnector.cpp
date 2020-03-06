@@ -11,8 +11,8 @@ bool semiConnector::evaluate(int inputFile, int ouputFile) {
 
 bool semiConnector::evaluate2() {
 		//semicolon evaluates both sides regardless
-       left->evaluate();       //evaluate left side
-       return right->evaluate(); //evaluate then right side in case of chain
+       left->evaluate2();       //evaluate left side
+       return right->evaluate2(); //evaluate then right side in case of chain
 }
 
 void semiConnector::setLeft(Token* token){

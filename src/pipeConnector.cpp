@@ -16,10 +16,10 @@ bool pipeConnector::evaluate(int inputfile, int outputfile) {
 	int fds[2];
 	pipe(fds);
 	
-	left->evaluate(in, fds[1]);
+	left->evaluate(inputfile, fds[1]);
 	close(fds[1]);
 	
-	right->evaluate(fds[0], out);
+	right->evaluate(fds[0], outputfile);
 	close(fds[0]);
 
 	return true;

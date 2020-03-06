@@ -1,7 +1,10 @@
 #ifndef __PIPE_CONNECTOR__
 #define __PIPE_CONNECTOR__
 
-#include "conncector.h"
+
+#include <stdio.h>
+#include <unistd.h>
+#include "connector.h"
 
 
 class pipeConnector: public Connector {

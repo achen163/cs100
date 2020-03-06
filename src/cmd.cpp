@@ -116,7 +116,7 @@ bool Cmd::evaluate(int inputBit, int outputBit) {
 		vector<string> theCommands; //vector without redirectors
 		unsigned z = 0;
 		for(z = 0; z < commands.size(); ++z) {
-			if(isRedirector(theCommands.at(z)) == false) {
+			if(isRedirector(commands.at(z)) == false) {
 				theCommands.push_back(commands.at(z));
 			}
 			else break;
@@ -124,7 +124,7 @@ bool Cmd::evaluate(int inputBit, int outputBit) {
 
 		for(unsigned i = 0; z < commands.size(); ++z) {
 			if(isRedirector(commands.at(z))) { 
-				if(commands.at(i) == ">>" || commands.at(i) == ">>") {
+				if(commands.at(i) == ">" || commands.at(i) == ">>") {
 					setOutput(commands.at(i+1));
 				}
 				else if(commands.at(i) == "<") {
@@ -199,7 +199,7 @@ bool Cmd::evaluate(int inputBit, int outputBit) {
                  	}
                 	if(isInput) {
 				int fileDetail = open(output.c_str(), O_RDWR | O_TRUNC | O_CREAT, S_IRWXU | S_IRWXG);
-				int (fileDetail < 0) {
+				if (fileDetail < 0) {
 					cout << "Error. Cannot open the file" << endl;
 					return false;
 				}
@@ -218,12 +218,12 @@ bool Cmd::evaluate(int inputBit, int outputBit) {
 			}
 			else {	
 				int fileDetail = open(output.c_str(), O_RDWR | O_APPEND | O_CREAT, S_IRWXU | S_IRWXG);
-				int (fileDetail < 0) {
+				if (fileDetail < 0) {
 					cout << "Error. Cannot open the file" << endl;
 					return false;
 				}
 				dup2(fileDetail, STDOUT_FILENO);
-				close(fDetail);
+				close(fileDetail);
 				dup2(inputBit, 0);
 				dup2(outputBit, 1);
 				
@@ -237,8 +237,8 @@ bool Cmd::evaluate(int inputBit, int outputBit) {
 			}	
 			
 		}
-		else if(inputFile.empty() == false) {
-			int fileDetail = open(input.c_str(), O_RDONLY)
+		else if(input.empty() == false) {
+			int fileDetail = open(input.c_str(), O_RDONLY);
 			if(fileDetail < 0) { 
 				cout << "Error. Cannot open the file" << endl;
 				return false;
@@ -316,7 +316,7 @@ bool Cmd::isRedirector(string inputFromUser) {
         return false;
 }
 
-bool Cmd:evaluate2() {
+bool Cmd::evaluate2() {
         if(commands.at(0) == "exit")  exit(0); //take care of exit
 
         if(commands.at(0) == "test" || commands.at(0) == "[") {
