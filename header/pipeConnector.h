@@ -12,7 +12,7 @@ class pipeConnector: public Connector {
 public: 
 	pipeConnector() : Connector() {left = NULL; right = NULL;}
 	string item();
-	bool evaluate(int,int);
+	bool evaluate(int inputfile,int outputfile);
 	bool evaluate2();
 	void setLeft(Token* );
 	void setRight(Token* );

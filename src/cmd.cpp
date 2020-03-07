@@ -125,7 +125,8 @@ bool Cmd::evaluate(int inputBit, int outputBit) {
 
 		for(unsigned i = 0; i < commands.size(); ++i) {
 			if(isRedirector(commands.at(i))) { 
-				if(commands.at(i) == ">" || commands.at(i) == ">>") {
+				if(commands.at(i) == ">") setOutput(commands.at(i+1)); 
+				else if(commands.at(i) == ">>") {
 					setOutput(commands.at(i+1));
 				}
 				else if(commands.at(i) == "<") {
@@ -152,10 +153,14 @@ bool Cmd::evaluate(int inputBit, int outputBit) {
 			}
 			if(isInput) {
 				int ifDetail = open(input.c_str(), O_RDONLY);
-				int ofDetail = open(output.c_str(), O_RDWR | O_TRUNC | O_CREAT, S_IRWXU | S_IRWXG);
+				int ofDetail = open(output.c_str(), O_TRUNC | O_RDWR | O_CREAT, S_IRWXU | S_IRWXG);
 				
-				if(ofDetail < 0 || ifDetail < 0) {
-					cout << "Error. Cannot open the file" << endl;
+				if(ofDetail < 0) { 
+					cout << "Error. Cannot open the output file" << endl;
+					return false;
+				}
+				else if(ifDetail < 0) {
+					cout << "Error. Cannot open the input file" << endl;
 					return false;
 				}
 				dup2(ifDetail, STDIN_FILENO);
@@ -175,12 +180,17 @@ bool Cmd::evaluate(int inputBit, int outputBit) {
 			}
 			else { 
 				int ifDetail = open(input.c_str(), O_RDONLY);
-				int ofDetail = open(output.c_str(), O_RDWR | O_APPEND | O_CREAT, S_IRWXU | S_IRWXG);
+				int ofDetail = open(output.c_str(), O_APPEND | O_RDWR | O_CREAT, S_IRWXU | S_IRWXG);
 
-				if(ifDetail < 0 || ofDetail < 0) {
-					cout << "Error. Cannot open the file" << endl;
+				if(ofDetail < 0) {
+                                        cout << "Error. Cannot open the output file" << endl;
 					return false;
-				}
+                                }
+                                else if(ifDetail < 0) {
+                                        cout << "Error. Cannot open the input file" << endl;
+                                        return false;
+                                }
+
 				
 				dup2(ifDetail, STDIN_FILENO); 
 				dup2(ofDetail, STDOUT_FILENO);
@@ -204,7 +214,7 @@ bool Cmd::evaluate(int inputBit, int outputBit) {
                                 isInput = true;
                  	}
                 	if(isInput) {
-				int fileDetail = open(output.c_str(), O_RDWR | O_TRUNC | O_CREAT, S_IRWXU | S_IRWXG);
+				int fileDetail = open(output.c_str(), O_TRUNC | O_RDWR | O_CREAT, S_IRWXU | S_IRWXG);
 				if (fileDetail < 0) {
 					cout << "Error. Cannot open the file" << endl;
 					return false;
@@ -223,7 +233,7 @@ bool Cmd::evaluate(int inputBit, int outputBit) {
 				}	
 			}
 			else {	
-				int fileDetail = open(output.c_str(), O_RDWR | O_APPEND | O_CREAT, S_IRWXU | S_IRWXG);
+				int fileDetail = open(output.c_str(), O_APPEND | O_RDWR | O_CREAT, S_IRWXU | S_IRWXG);
 				if (fileDetail < 0) {
 					cout << "Error. Cannot open the file" << endl;
 					return false;

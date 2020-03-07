@@ -1,6 +1,6 @@
 echo Taeho > nametest.txt
 echo Yoo >> nametest.txt 
-echo thess are my files: > nametest.txt
+echo these are my files: > nametest.txt
 ls > directories.txt
 
 cat  nametest.txt
