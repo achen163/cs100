@@ -1,10 +1,4 @@
-echo hello > redirection.txt || echo bye >> redirection.txt 
-echo this is redirection > output.txt
-wc < redirection.txt > output.txt #get word count from redirection and put it inside output
-
-cat redirection.txt
-echo word count:
-cat output.txt
-rm output.txt
-rm redirection.txt
+echo 'hello' > output
+cat < output
+rm output
 exit

@@ -99,11 +99,11 @@ bool Cmd::evaluate(int inputBit, int outputBit) {
                 }
         }
 	else {
-		int status = 0;
+	int status = 0;
         pid_t pid = fork();
         pid_t wait;
         if(pid < 0) {
-                perror("forking child process failed");
+                perror("forking failed");
 		exit(1);
         }
         else if(pid == 0) {
@@ -181,7 +181,7 @@ bool Cmd::evaluate(int inputBit, int outputBit) {
 			else { 
 				int ifDetail = open(input.c_str(), O_RDONLY);
 				int ofDetail = open(output.c_str(), O_APPEND | O_RDWR | O_CREAT, S_IRWXU | S_IRWXG);
-
+			
 				if(ofDetail < 0) {
                                         cout << "Error. Cannot open the output file" << endl;
 					return false;
@@ -259,7 +259,7 @@ bool Cmd::evaluate(int inputBit, int outputBit) {
 				cout << "Error. Cannot open the file" << endl;
 				return false;
 			}
-			dup2(fileDetail, STDOUT_FILENO);
+			dup2(fileDetail, STDIN_FILENO);
                                 close(fileDetail);
                                 dup2(inputBit, 0);
                                 dup2(outputBit, 1);
@@ -412,7 +412,8 @@ bool Cmd::evaluate2() {
         pid_t pid = fork();
         pid_t wait;
         if(pid < 0) {
-                perror("forking child process failed");
+                perror("forking failed");
+		exit(1);
         }
 	else if(pid == 0) {
 	         unsigned arraySize = commands.size() + 1;

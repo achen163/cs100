@@ -2,11 +2,8 @@ echo Taeho > nametest.txt
 echo Yoo >> nametest.txt 
 echo these are my files: > nametest.txt
 ls > directories.txt
-
 cat  nametest.txt
 cat  directories.txt 
-
 rm nametest.txt
 rm directories.txt
-
 exit
