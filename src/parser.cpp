@@ -152,7 +152,7 @@ int poundcounter = 0;
 			++pipeCounter;
 	for (vector<string>::iterator i = userInput.begin(); i != userInput.end(); ++i) {
 		 //parentehses counter	
-                if(*i == "[" || *i == "]" || *i == "(" || *i == ")") {
+                if(*i == "[" || *i == "]" || *i == "(" || *i == ")" || *i == ">>" || *i == ">" || *i == "|" || *i == "<") {
                         continue; //next iteration
                 }
 		else if(i->at(i->size() - 1) == ';') {
@@ -243,7 +243,7 @@ while( j < userInput.size()) {
 		}
 		connectors.pop();
 	}
-	else /*(isConnector(item) == false && leftParen(item) == false && rightParen(item) == false)*/ {
+	else /* if (isConnector(item) == false && leftParen(item) == false && rightParen(item) == false)*/ {
                 cmds.push_back(item);
 		if(j == userInput.size()-1) 
 			tokens.push(new Cmd(cmds));	
