@@ -109,6 +109,7 @@ bool Cmd::evaluate(int inputBit, int outputBit) {
         else if(pid == 0) {
 		
 		//add piping and redirection here
+		//first check if redirector is at the end, this is not valid
 		if(isRedirector(commands.at(commands.size()-1))) { 
 			cout << "Error when trying to use a redirector\n";
 			return false;
@@ -122,7 +123,7 @@ bool Cmd::evaluate(int inputBit, int outputBit) {
 			}
 			else break;
 		}
-
+		
 		for(unsigned i = 0; i < commands.size(); ++i) {
 			if(isRedirector(commands.at(i))) { 
 				if(commands.at(i) == ">") setOutput(commands.at(i+1)); 
@@ -142,9 +143,14 @@ bool Cmd::evaluate(int inputBit, int outputBit) {
 		
 		for(unsigned x = 0; x < theCommands.size(); ++x) 
 			arguments[x] = (char*)(theCommands.at(x).c_str());
+
 		
+
+		//set last char to nullptr
 		arguments[theCommands.size()] = nullptr;
 
+		//checks if input and outpufiles are empty
+		//if not empty then we check which redirector is being used
 		if(input.empty() == false && output.empty() == false) {
 			bool isInput = false;
 			for(unsigned i = 0; i < commands.size(); ++i) {
@@ -210,7 +216,7 @@ bool Cmd::evaluate(int inputBit, int outputBit) {
     	        else if(output.empty() == false) {
                 	bool isInput = false;
                 	for(unsigned i = 0; i < commands.size(); ++i) {
-                        	if(commands.at(i) == ">")
+                        	if(commands.at(i) == ">") //takes case of the '>' redirector
                                 isInput = true;
                  	}
                 	if(isInput) {
@@ -232,7 +238,7 @@ bool Cmd::evaluate(int inputBit, int outputBit) {
 					exit(1);
 				}	
 			}
-			else {	
+			else {	//this takes care of ">>" redirector
 				int fileDetail = open(output.c_str(), O_APPEND | O_RDWR | O_CREAT, S_IRWXU | S_IRWXG);
 				if (fileDetail < 0) {
 					cout << "Error. Cannot open the file" << endl;
@@ -252,34 +258,42 @@ bool Cmd::evaluate(int inputBit, int outputBit) {
 				}
 			}	
 			
-		}
+		} //this takes care of '<' redirector
 		else if(input.empty() == false) {
 			int fileDetail = open(input.c_str(), O_RDONLY);
-			if(fileDetail < 0) { 
+			if(fileDetail < 0) {
+ 
 				cout << "Error. Cannot open the file" << endl;
 				return false;
+
 			}
 			dup2(fileDetail, STDIN_FILENO);
-                                close(fileDetail);
-                                dup2(inputBit, 0);
-                                dup2(outputBit, 1);
+                         close(fileDetail);
+                         dup2(inputBit, 0);
+                         dup2(outputBit, 1);
+
 
                                 if(inputBit != 0) close(inputBit);
                                 else if(outputBit != 1) close(outputBit);
 
                                 if(execvp(*arguments, arguments) < 0) {
+   
                                         cout << "Error: execvp failed" << endl;
                                         exit(1);
-                                }
+   
+                                 }
                	}
-			
+		//this else statement is for userinput but with no redirector			
                 else {
 			unsigned arraySize = commands.size() + 1;
                 	char* args[arraySize];
                 	for(unsigned i = 0; i < arraySize - 1; ++i) {
-                        	args[i] = (char*)(commands.at(i).c_str());
-                	}
-                	args[arraySize - 1] = NULL;
+        
+	                	args[i] = (char*)(commands.at(i).c_str());
+        
+	        	}
+        
+	        	args[arraySize - 1] = NULL;
 
 			if(inputBit != 0) close(inputBit);
 			else if(outputBit != 1) close(outputBit);
