@@ -59,4 +59,10 @@ TEST(executeTest, testInput) {
 	
 }
 
+TEST(execute2Test, testInput) {
+	Parser p;
+	cout << "Testing execute2(). Enter input" << endl;
+	p.execute();
+}
+
 
