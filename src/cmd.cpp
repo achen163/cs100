@@ -143,7 +143,7 @@ bool Cmd::evaluate(int inputBit, int outputBit) {
 		for(unsigned x = 0; x < theCommands.size(); ++x) 
 			arguments[x] = (char*)(theCommands.at(x).c_str());
 		
-		arguments[theCommands.size()] = NULL;
+		arguments[theCommands.size()] = nullptr;
 
 		if(input.empty() == false && output.empty() == false) {
 			bool isInput = false;
@@ -295,7 +295,7 @@ bool Cmd::evaluate(int inputBit, int outputBit) {
                 wait = waitpid(pid, &status, 0);
                 if(wait == -1) {
                         cout << "waitpid error" << endl;
-                        exit(EXIT_FAILURE);
+                        exit(1);
                 }
                 if(WEXITSTATUS(status) == 0) {
                         return true;
@@ -434,7 +434,7 @@ bool Cmd::evaluate2() {
                 wait = waitpid(pid, &status, 0);
                 if(wait == -1) {
                         cout << "waitpid error" << endl;
-                        exit(EXIT_FAILURE);
+                        exit(1);
                 }
                 if(WEXITSTATUS(status) == 0) {
                         return true;
