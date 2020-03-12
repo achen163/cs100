@@ -293,7 +293,7 @@ bool Cmd::evaluate(int inputBit, int outputBit) {
         
 	        	}
         
-	        	args[arraySize - 1] = NULL;
+	        	args[arraySize - 1] = nullptr;
 
 			if(inputBit != 0) close(inputBit);
 			else if(outputBit != 1) close(outputBit);
@@ -435,7 +435,7 @@ bool Cmd::evaluate2() {
                  for(unsigned i = 0; i < arraySize - 1; ++i) {
        		          args[i] = (char*)(commands.at(i).c_str());
                  }
-                        args[arraySize - 1] = NULL;
+                        args[arraySize - 1] = nullptr;
 
               
 
