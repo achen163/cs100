@@ -73,6 +73,9 @@ The boost library was used during the tokenizing process.
 # Assignment 3
 For this assignment, we basically had to rebuild most of our old assignment 2. Building on top of the assignment 2 specs, we have included test command features for literal and symbolic. We also included precendence operators (paranthesis) to change the precedence of our executions. The tree was built after we utilized the shunting yard algorithm to manage precedence, putting it into postfix notation. For our parser, to test for parentheses or brackets, we implemeneted an algorithm that splits up parentheses and semicolons if connected to a command/argument. 
 
+# Assignment 4
+For this assignment, we implemented a new connector known as the Pipe connector. We added to our parser to parse for this new connector which is just the "|" symbol. For our pipe connector, we actually created an evaluate2 function that is the same as evaluate, but takes in an inputFile and an outputFile. In addition, we implemented the use of redirectors, including ">", ">>", and "<". To implement these, system calls such as dup2 were needed. For the redirectors, we used the open and close system calls.
+
 # Current Bug:
 When we use the || connector, for some reason if there is an error, it prints twice. Will use time period in Assignment 4 to try to fix.
 
